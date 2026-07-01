@@ -9,4 +9,6 @@ Latest user-selected risk-seeking strategy: [`outputs/FINAL_NO_CASH_GLD_STRATEGY
 
 This addendum documents the no-cash, weekly-rebalanced, GLD-defensive AI/semis strategy with exact weights, current order sheet, buy/sell rules, tested data modes, benchmarks, exit-rule comparisons, and cash-reserve comparisons.
 
+Backtest code and cached inputs used by the Codex audit are in [`work/`](work/).
+
 Status: bootstrapping — research first, then a lean vectorized backtester.
