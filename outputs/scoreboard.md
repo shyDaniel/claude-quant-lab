@@ -192,6 +192,17 @@ This is the FIRST strategy with a STATISTICALLY SIGNIFICANT risk-adjusted edge o
 CI spanned zero) — its proven value is only drawdown reduction. The covered call's Sharpe edge
 IS significant. Caveat unchanged: IRA/Roth-only (tax-dominated in taxable, exp15).
 
+## exp17 — Section 1256 (index options) — can it rescue premium-selling in taxable? NO
+1999-2026 after-tax of the trend-gated covered call in a TAXABLE account:
+- equity options (QQQ, short-term 40.8%): $1.09M
+- Section 1256 index options (NDX/XND, 60/40 = 30.6%): $1.49M  (+37% — real, worth using)
+- hypothetical if it could DEFER: $2.84M
+- buy-hold QQQ (deferred LTCG): $3.28M
+Section 1256 helps (~+37%) but STILL loses to buy-hold. The moat is DEFERRAL, not the rate:
+premium is realized every year, so no premium strategy captures buy-hold's decades of untaxed
+compounding. Rigorous final nail -> covered call is IRA/Roth-only even with the best pro tax
+technique. Practical tip: IF selling premium in taxable anyway, use INDEX options (1256), not QQQ.
+
 ## SETTLED FINAL MAP (account-location decides)
 - TAXABLE (simplest, best after-tax): QQQ buy-hold (max wealth) or the simple trend core
   (half the drawdown). NO options — tax code punishes them.
