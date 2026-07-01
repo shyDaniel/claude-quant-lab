@@ -1,5 +1,11 @@
 # FINAL RECOMMENDATION — claude-quant-lab
 
+## 2026-07-01 Codex No-Cash GLD Addendum
+
+For the user's later stated preference of maximum return, no cash reserve, higher AI/semis concentration, GLD instead of BIL, NBIS conviction, DRAM instead of SNDK, and keeping SMCI, see `outputs/FINAL_NO_CASH_GLD_STRATEGY.md`.
+
+That file is the latest user-selected risk-seeking execution artifact. The sections below remain useful context for the lower-risk/tax-aware Claude conclusion and the remote repo's aggressive-allocation discussion.
+
 ## ⚠️ AUDIT RESPONSE (2026-07-01) — recommendation REVISED after independent AI audit
 An independent AI audit reviewed this repo and CORRECTLY rejected the 45% same-day taxable
 AI-capex allocation. I concede its findings in full:
@@ -40,7 +46,6 @@ Honest lines:
   bull regime. You're being paid for taking the risk, not for a proven edge.
 
 ---
-
 
 ## ★ THE FINAL STRATEGY (after 15 experiments + studying Codex + Tian Compounding) ★
 The one edge that survives everything = **trend-based drawdown control**. Two clean choices,
