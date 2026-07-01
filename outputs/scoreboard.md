@@ -50,12 +50,24 @@ All numbers net of stated costs. Honest failures included — that's the point.
   Winner on the goal's lens (simplest + LOWEST RISK): the plain **QQQ 200d-SMA trend rule**
   — DD -22% (vs QQQ -35%, AI-mom -39%), Sharpe ~0.98, robust in BOTH halves (0.84 / 1.12).
 
-## LEADING FINAL CANDIDATE (simplest + lowest risk, refine from here)
-A simple QQQ trend rule is the low-risk core. Both repos independently converge here.
-My job: find the SIMPLEST, LOWEST-RISK variant with the best robust risk-adjusted return,
-and lock it. AI-momentum stays a documented high-risk/high-return sleeve, NOT the core.
+## *** FINAL LOCKED CORE (see outputs/FINAL_RECOMMENDATION.md) ***
+**QQQ 12-month momentum -> T-bills/IEF when negative. Monthly. ~0.6 trades/yr.**
+- exp04 (2004-2026, OOS-split): 12mo-mom -> IEF = CAGR 13.7% / Sharpe 0.80 / DD -29% /
+  turnover 0.8x, robust in BOTH halves (Sharpe 0.72 / 0.87). Beats QQQ on Sharpe (0.80 vs
+  0.77), HALVES drawdown (-29% vs -53%). 200d-SMA rule is clearly inferior (0.68 Sharpe,
+  -39% DD). T-bill risk-off version is the simplest + best worst-year (-22%).
+- This is the defensible simplest/lowest-risk answer. It does NOT out-return QQQ (nothing
+  un-levered does) — it makes QQQ's ride holdable. AI-momentum (exp02) = optional high-risk
+  sleeve only.
 
-## Next
-- exp04: pick the FINAL low-risk core — compare QQQ 200d-SMA vs 12-mo momentum vs a
-  dual-momentum (QQQ-on / defensive-asset-off), all OOS + after-tax, choose the simplest
-  with the best robust Sharpe & shallowest drawdown. Lock it as the recommendation.
+## exp04 rows
+| # | Strategy | Window | CAGR | Sharpe | MaxDD | Verdict |
+|---|----------|--------|------|--------|-------|---------|
+| 04 | QQQ 12mo-mom -> IEF | 2004-2026 | 13.7% | 0.80 | -29% | **FINAL core (best risk-adj)** |
+| 04 | QQQ 12mo-mom -> T-bills | 2004-2026 | 12.9% | 0.77 | -29% | simplest, best worst-year -22% |
+| 04 | QQQ 200d-SMA -> cash | 2004-2026 | 10.2% | 0.68 | -39% | inferior — rejected |
+
+## Ongoing refinement (goal: keep improving, simplest + lowest risk)
+- Stress-test rebalance frequency (monthly vs weekly) vs drawdown/turnover.
+- T-bill vs IEF risk-off in rate-shock regimes (2022).
+- Whether a tiny AI sleeve improves the frontier without wrecking simplicity/risk.
