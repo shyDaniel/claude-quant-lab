@@ -203,6 +203,25 @@ premium is realized every year, so no premium strategy captures buy-hold's decad
 compounding. Rigorous final nail -> covered call is IRA/Roth-only even with the best pro tax
 technique. Practical tip: IF selling premium in taxable anyway, use INDEX options (1256), not QQQ.
 
+## exp18 — AI sleeve WITH taxes (closes the user's stated priority) -> sheltered-only
+2013-2026 after-tax (QQQ/core deferred; AI sleeve monthly rotation = annual short-term):
+| strategy | Sharpe | after-tax $ |
+| QQQ buy-hold | 1.00 | $2.87M |
+| MY core | 0.89 | $1.78M |
+| 80% core + 20% AI | 1.04 | $2.43M |
+| AI sleeve alone | 1.30 | $5.04M* (*survivorship-inflated) |
+Even the survivorship-INFLATED 20% AI blend ($2.43M after-tax) LOSES to buy-hold QQQ ($2.87M)
+in taxable — the AI sleeve's monthly rotation takes an ~82% tax haircut (short-term gains). De-
+biased (forward AI != 40%), the blend ~matches the core, doesn't beat QQQ. Same verdict as
+options: AI momentum is tax-ugly -> optional <=20% sleeve in an IRA/Roth, never a taxable core beat.
+
+## CONVERGED — every thread now closed (18 experiments)
+Trend (core), leverage, LEAPS, covered calls, put-writes, overnight, MACD/RSI/volume, sector
+momentum, AI momentum, Section 1256 — ALL tested honestly. Consistent answer from every angle:
+- TAXABLE: buy-hold QQQ (max after-tax) or the simple trend core (half the drawdown). No options, no AI churn.
+- IRA/ROTH: trend-gated covered call (the ONLY statistically-significant risk-adjusted beat of QQQ).
+The search has converged. Further experiments = diminishing returns; loop shifts to monitoring.
+
 ## SETTLED FINAL MAP (account-location decides)
 - TAXABLE (simplest, best after-tax): QQQ buy-hold (max wealth) or the simple trend core
   (half the drawdown). NO options — tax code punishes them.
