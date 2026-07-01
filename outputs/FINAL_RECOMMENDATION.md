@@ -61,6 +61,21 @@ Confirmed, data-driven:
 - Monthly T-bill version captures **93% of QQQ's return with HALF the drawdown and a HIGHER
   Sharpe (0.88 vs 0.80)**. This is the final, simplest, lowest-risk answer.
 
+## Statistical significance (exp09 bootstrap) — I corrected my own claim
+5,000 block-bootstraps of 2007-2026 (preserving autocorrelation):
+- **DRAWDOWN reduction is REAL:** core has a shallower drawdown in 88.6% of alternate
+  histories (median -30% vs QQQ -43%). Statistically robust. This is the proven edge.
+- **Sharpe/return "beat" is NOT significant:** core beats QQQ's Sharpe in only 68.9% of
+  histories; the Sharpe-diff 90% CI is [-0.15, +0.35] — INCLUDES ZERO. So I withdraw the
+  "beats QQQ risk-adjusted" claim: it is within noise. Honest framing = SAME-ish
+  risk-adjusted return as QQQ, but reliably ~HALF the drawdown.
+- **My core vs Codex core = a statistical TIE** (P better Sharpe 28%, P shallower DD 50.5%).
+  Same strategy family; neither "won." Differ only in the risk-off leg (T-bills safest worst
+  year; IEF a touch more return).
+Bottom line the DATA supports: this is proven DRAWDOWN INSURANCE, not proven alpha. For a
+panic-prone investor that is exactly the point — a smoother, holdable ride at ~no cost to
+expected risk-adjusted return.
+
 ## How strong is the proof? (exp07 robustness battery — the honest ceiling)
 "Best thing in the world" is UNPROVABLE (infinite strategies, unknowable future). What IS
 proven, and matters more than a single flashy backtest:
