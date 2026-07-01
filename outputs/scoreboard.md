@@ -82,6 +82,30 @@ sleeve's forward return and the blend only modestly beats the core, not QQQ. VER
 stays the simplest/lowest-risk recommendation; a capped **<=20% AI sleeve is a legit OPTIONAL
 growth add-on** (the user's AI angle), clearly flagged high-risk + survivorship-biased.
 
+## HEAD-TO-HEAD vs Codex vs LEAPS (exp08, 2007-2026, $300k, net of costs)
+| Strategy | CAGR | Sharpe | MaxDD | w12mo | $300k end |
+|----------|------|--------|-------|-------|-----------|
+| QQQ buy-hold | 16.6% | 0.80 | -53% | -48% | $5.96M |
+| MY core (mom->T-bills) | 15.5% | 0.88 | -29% | -22% | $4.96M |
+| Codex core (mom->IEF) | 16.4% | 0.91 | -29% | -28% | $5.75M |
+| LEAPS gated 40% (IV22) | 15.8% | 0.74 | -35% | -29% | $5.17M |
+| LEAPS gated 55% (IV22) | 20.3% | 0.74 | -45% | -38% | $10.9M |
+| LEAPS ungated 55% | 21.7% | 0.71 | -73% | -65% | $13.6M |
+| LEAPS conservative (IV25/3%) | 13.5% | 0.68 | -34% | -29% | $3.52M |
+
+Data verdict:
+- **Risk-adjusted (Sharpe) winner = the simple trend rules** (0.88-0.91), beating QQQ (0.80)
+  and EVERY LEAPS config (0.68-0.74). LEAPS never wins risk-adjusted.
+- **Raw dollars winner = leveraged LEAPS** ($10.9-13.6M) — but at -45% to -73% drawdowns and
+  WORSE Sharpe. More money for a LOT more risk, not free.
+- **LEAPS is fragile:** IV22/prem55 = $10.9M; IV25/higher-spread = $3.52M. A 3-vol-pt IV or
+  cost change flips it from "beats QQQ" to "worst row." You're betting on option pricing too.
+- **Me vs Codex:** neck-and-neck on the core (same strategy family). Codex's IEF leg edges
+  Sharpe/$ (0.91); MY T-bill leg has the best WORST-YEAR (-22% vs -28%, bonds fell in 2022).
+  For lowest risk -> T-bills (mine); for a bit more return -> IEF (Codex). Honest tie, my edge
+  = simpler + safest worst-case + I killed the mirages (overnight, LEAPS-as-free-lunch) faster.
+LEAPS caveat: synthetic BS on adjusted price, no tax -> REAL leaps worse than shown.
+
 ## FINAL STATE
 Defensible best executable strategy = **QQQ 12mo-mom -> T-bills, monthly** (100% core),
 optional <=20% AI-momentum sleeve for growth-seekers. Proven, simplest, lowest-risk, robust.
