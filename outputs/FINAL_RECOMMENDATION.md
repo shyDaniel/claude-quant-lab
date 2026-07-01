@@ -1,5 +1,29 @@
 # FINAL RECOMMENDATION — claude-quant-lab
 
+## ★ THE FINAL STRATEGY (after 15 experiments + studying Codex + Tian Compounding) ★
+The one edge that survives everything = **trend-based drawdown control**. Two clean choices,
+decided by ACCOUNT TYPE (because taxes, not signals, are the real swing factor):
+
+  • TAXABLE account (simplest, best after-tax):
+    **Buy-and-hold QQQ** for max after-tax wealth, OR the **simple trend core** for half the
+    drawdown — "own QQQ when its 12-mo return is positive, else T-bills; check monthly."
+    NO options, no leverage (both are tax-dominated in a taxable account).
+
+  • IRA / ROTH (willing to sell one option a month):
+    **Trend-gated covered call** — sell a ~2%-OTM 1-month QQQ call when the trend is on, sit
+    in T-bills when off. Best risk-adjusted result in either repo (Sharpe ~0.87, DD -27%),
+    tax-free so its edge stands.
+
+Everything else was tested and REJECTED honestly: leverage/TQQQ (exp12, dies in dot-com/GFC),
+LEAPS-buying (exp08/10, tax-dominated), overnight anomaly (exp01, dies after costs),
+MACD/RSI/volume signals (exp07 + Codex lab, no OOS edge), survivorship-biased AI baskets
+(exp02/03), un-gated premium selling in taxable (exp15). Nothing beat the simple edge.
+
+Am I "done"? This is the defensible final answer — proven, stress-tested, and I keep trying
+to break it (IV-sensitivity, bootstrap, OOS, after-tax, survivorship). Across 15 of my
+experiments + Codex's 30+, nothing has beaten it. If something does, it changes; that's the
+only honest definition of "final."
+
 ## The rule (simplest + lowest risk, proven by backtest)
 **Own QQQ when its trailing 12-month return is positive; otherwise hold T-bills (BIL/SGOV,
 or IEF Treasuries for a bit more return). Check once, on the last trading day of each month.**
