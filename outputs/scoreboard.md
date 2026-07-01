@@ -120,6 +120,23 @@ simple trend rules. In a TAXABLE account LEAPS is strictly dominated (more risk 
 LEAPS only makes sense in an IRA/Roth (no annual tax drag) as a small gated high-risk sleeve.
 After-tax winner overall = buy-hold QQQ (deferral is powerful); simple > complex after tax.
 
+## exp11 — sector momentum (survivorship-FREE test of the momentum edge)
+1999-2026, 9 SPDR sectors (don't disappear -> no survivorship bias):
+| Strategy | CAGR | Sharpe | MaxDD |
+|----------|------|--------|-------|
+| QQQ buy-hold | 10.9% | 0.52 | -83% |
+| SPY buy-hold | 8.7% | 0.53 | -55% |
+| Sectors equal-weight | 9.4% | 0.59 | -52% |
+| Sector-momentum top3 | 9.3% | 0.62 | -30% |
+UNIFYING FINDING: momentum's edge is REAL survivorship-free (best Sharpe, -30% DD vs -52/-83)
+BUT it barely beats equal-weight sectors on Sharpe (0.62 vs 0.59) — ~ALL the benefit is the
+ABSOLUTE-MOMENTUM CASH FILTER (drawdown control), NOT cross-sectional winner-picking. This is
+the SAME edge as the core, now confirmed 4 ways (QQQ, SPY, sectors, AI). So: the ONE robust,
+real edge across everything = trend/absolute-momentum -> go to cash in downturns -> halve the
+drawdown. Winner-picking (AI basket) was mostly survivorship. Confirms the simple core is the
+right expression of the only real edge. Sector-mom is a clean alt but LOWER return than the
+QQQ core (9.3% vs ~15%), so it doesn't replace the core.
+
 ## FINAL STATE
 Defensible best executable strategy = **QQQ 12mo-mom -> T-bills, monthly** (100% core),
 optional <=20% AI-momentum sleeve for growth-seekers. Proven, simplest, lowest-risk, robust.
