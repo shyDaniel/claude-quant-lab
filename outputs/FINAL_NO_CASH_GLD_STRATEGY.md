@@ -4,7 +4,7 @@ Date: 2026-07-01
 
 ## Decision
 
-The selected model is the **no-cash-reserve, weekly-rebalanced, GLD-defensive AI/semis strategy**.
+The selected execution model is the **no-cash-reserve, weekly-signal, band-rebalanced, GLD-defensive AI/semis strategy**.
 
 ## Post-Claude Audit Response
 
@@ -16,12 +16,13 @@ Claude's independent audit found no fabrication in the checkable math, but it co
 
 The repo now fixes the first two gaps with `work/cache/gld_prices.csv` and `work/current_1204_order_sheet.py`.
 
-The strict max-CAGR model is still the selected argmax. However, after the audit, the cleaner real-money no-cash variant is:
+The strict max-CAGR model is still the pre-tax argmax. However, after the audit, the cleaner real-money no-cash variant is:
 
 ```text
 nbis_floor = 15%
 storage_excess_to_nbis = 50%
-rebalance = weekly
+signal check = weekly
+trade rule = full rebalance only when L1 drift > 20%
 cash = 0%
 GLD defensive sleeve unchanged
 ```
@@ -32,31 +33,31 @@ Plain English:
 
 - Do not keep a cash sleeve.
 - Keep QQQ as a 25% core.
-- Put the rest into a concentrated AI/semis basket, with NBIS getting weight from both its score and the storage-overflow redirect.
+- Put the rest into a concentrated AI/semis basket, with NBIS capped down from the earlier 26.45% version by using a lower storage-overflow redirect.
 - Use GLD as the defensive/overflow sleeve instead of BIL or cash.
 - Keep SMCI at the current small position size.
 - Use DRAM as the live memory/HBM bucket instead of buying SNDK.
-- Rebalance weekly from target weights; this is not a daily panic-trading model.
+- Check signals weekly, but trade only when the portfolio is more than 20% L1 away from target.
 
-This is the highest-CAGR variant from the tested framework. The tradeoff is that it gives up the psychological comfort of dry powder. If the portfolio drops sharply tomorrow, the model can only buy the dip by trimming GLD or overweight names.
+This is no longer the strict pre-tax max-CAGR row. It is the tax-aware execution choice: accept a small pre-tax give-up versus the 26.45% NBIS version, then reduce taxable churn by trading only when drift is large. The tradeoff is that it still gives up the psychological comfort of dry powder. If the portfolio drops sharply tomorrow, the model can only buy the dip by trimming GLD or overweight names.
 
 This is rule-based research, not fiduciary advice or a guarantee.
 
 ## Current Target Weights
 
-These are the live target weights for the user's current preference set: no cash, no BIL, GLD defensive sleeve, DRAM instead of SNDK, keep SMCI, keep high NBIS exposure.
+These are the post-audit ALT target weights: no cash, no BIL, GLD defensive sleeve, DRAM instead of SNDK, keep SMCI, NBIS floor 15%, storage excess redirect 50%.
 
 | Ticker | Target weight | Role |
 |---|---:|---|
-| NBIS | 26.4537% | AI infrastructure plus storage-overflow redirect |
 | QQQ | 25.0000% | Core Nasdaq-100 growth exposure |
+| NBIS | 20.7268% | AI infrastructure plus reduced storage-overflow redirect |
 | MU | 19.8080% | Memory/HBM cycle exposure |
-| NVDA | 7.7241% | AI accelerator/platform exposure |
+| NVDA | 10.9896% | AI accelerator/platform exposure |
 | DRAM | 7.4159% | Live substitute for historical SNDK memory slot |
 | GLD | 4.7451% | Gold defensive/overflow sleeve |
-| GEV | 3.0610% | AI power/electrification exposure |
+| GEV | 4.3550% | AI power/electrification exposure |
+| AMD | 3.9286% | AI/compute exposure |
 | SMCI | 3.0309% | Keep-current-position server exposure |
-| AMD | 2.7612% | AI/compute exposure |
 | Cash | 0.0000% | No reserve |
 | BIL | 0.0000% | Rejected defensive asset |
 | SNDK | 0.0000% live | Historical proxy only; replaced by DRAM live |
@@ -70,12 +71,12 @@ Based on the user's 12:04 screenshot and total account value of $278,726.16. Use
 
 | Action | Ticker | Target value | Current value | Trade dollars | Approx shares |
 |---|---:|---:|---:|---:|---:|
-| Buy | NBIS | $73,733.36 | $46,168.91 | $27,564.45 | 118.81 |
+| Buy | NBIS | $57,771.14 | $46,168.91 | $11,602.23 | 50.01 |
 | Buy | MU | $55,210.08 | $27,999.61 | $27,210.47 | 26.24 |
 | Buy | GLD | $13,225.95 | $0.00 | $13,225.95 | 35.69 |
-| Buy | GEV | $8,531.70 | $0.00 | $8,531.70 | 7.52 |
-| Buy | AMD | $7,696.30 | $0.00 | $7,696.30 | 14.23 |
-| Buy | NVDA | $21,529.11 | $19,759.61 | $1,769.50 | 8.96 |
+| Buy | GEV | $12,138.56 | $0.00 | $12,138.56 | 10.70 |
+| Buy | AMD | $10,950.00 | $0.00 | $10,950.00 | 20.24 |
+| Buy | NVDA | $30,630.76 | $19,759.61 | $10,871.15 | 55.02 |
 | Buy | QQQ | $69,681.54 | $68,893.20 | $788.34 | 1.09 |
 | Buy | DRAM | $20,670.13 | $20,424.36 | $245.77 | 3.71 |
 | Buy | SMCI | $8,448.00 | $8,355.00 | $93.00 | 3.34 |
@@ -169,7 +170,7 @@ If a normal name fails the gate, its raw score is 0 and its weight is routed to 
 
 ### Normalization
 
-On each weekly rebalance date:
+On each weekly signal date:
 
 ```text
 1. Compute raw_score for every AI/semis name.
@@ -181,13 +182,13 @@ On each weekly rebalance date:
 
 ### NBIS Overlay
 
-The user is highly bullish on NBIS, so NBIS is handled with both a floor and a storage-overflow redirect:
+The post-audit ALT model handles NBIS with both a floor and a storage-overflow redirect:
 
 ```text
-NBIS floor = 25% of account
+NBIS floor = 15% of account
 NBIS activation policy = tradable_with_history
 storage cap = 30% of account across MU/SNDK/STX in the historical model
-storage excess redirect = 100% to NBIS when NBIS is active
+storage excess redirect = 50% to NBIS when NBIS is active
 ```
 
 This means NBIS does not need to be above its 100-day moving average to receive the overlay. It needs to have enough valid trading history. That is an intentional conviction/redirect override, not something the pure optimizer discovered from 10 years of NBIS data.
@@ -202,7 +203,7 @@ storage excess redirected to NBIS = 23.8318%
 final NBIS weight = 2.6219% + 23.8318% = 26.4537%
 ```
 
-So the selected model currently owns 26.4537% NBIS because `storage_excess_to_nbis=1.00` redirects the memory/storage excess into NBIS. A separate sensitivity file tests a lower-concentration alternative with `nbis_floor=15%` and `storage_excess_to_nbis=0.50`.
+So the original pre-tax max-CAGR model owned 26.4537% NBIS because `storage_excess_to_nbis=1.00` redirected the memory/storage excess into NBIS. The post-audit ALT model uses `nbis_floor=15%` and `storage_excess_to_nbis=0.50`, cutting today's NBIS target to 20.7268%.
 
 ### SMCI Keep Overlay
 
@@ -223,17 +224,18 @@ In the final live model, this removes STX and keeps SMCI.
 
 ## Buy And Sell Rules
 
-### Rebalance Rule
+### Signal And Band-Rebalance Rule
 
-Rebalance weekly, using the last trading day of the week. The backtest uses the daily adjusted close series, so the clean operational version is:
+Compute signals weekly, using the last trading day of the week. Do **not** automatically trade every week. The execution rule is a 20% L1 band:
 
 ```text
 After or near the weekly close:
 1. Calculate the new target weights.
-2. Calculate target dollars from current account value.
-3. Buy underweight names.
-4. Sell overweight names.
-5. Keep cash at 0% except rounding.
+2. Calculate current drifted weights from live position values.
+3. L1 drift = sum(abs(current_weight - target_weight)).
+4. If L1 <= 0.20: hold.
+5. If L1 > 0.20: fully rebalance to target weights.
+6. Keep cash at 0% except rounding.
 ```
 
 Close-to-close means:
@@ -246,7 +248,7 @@ It is the return measurement mode in the backtest. It does not mean the model re
 
 ### When To Buy
 
-Buy when:
+Buy only when the L1 band triggers and:
 
 ```text
 target_dollars > current_position_value
@@ -258,11 +260,11 @@ The buy amount is:
 buy_dollars = target_dollars - current_position_value
 ```
 
-Example: if NBIS dips while its model target remains 26.4537%, the strategy buys enough NBIS at the weekly rebalance to restore NBIS to the target weight, funded by trimming GLD and/or overweight positions.
+Example: if NBIS dips while its model target remains 20.7268%, the strategy buys enough NBIS at the next triggered rebalance to restore NBIS to the target weight, funded by trimming cash, GLD, or overweight positions.
 
 ### When To Sell
 
-Sell when:
+Sell only when the L1 band triggers and:
 
 ```text
 target_dollars < current_position_value
@@ -276,12 +278,24 @@ sell_dollars = current_position_value - target_dollars
 
 For NBIS specifically, the model sells NBIS in these situations:
 
-1. NBIS rallies enough that it becomes above its target weight, then the weekly rebalance trims it back.
+1. NBIS rallies enough that it becomes above its target weight, then a triggered rebalance trims it back.
 2. The storage/score overlay no longer redirects enough weight to NBIS and the NBIS target falls toward the active floor or base score.
 3. NBIS loses valid tradable history or otherwise becomes ineligible in the data; then the conviction floor turns off and the base score determines target weight.
 4. The user explicitly switches to the lower-drawdown variant where conviction floors obey the 100-day moving-average gate.
 
 The selected model does **not** sell NBIS merely because it falls below the 100-day moving average. That hard-exit version was tested and rejected for the user's chosen return-maximizing objective.
+
+### Current 12:04 Band Decision
+
+The default live band tool sees the 12:04 screenshot as a trade because cash is still unallocated:
+
+```text
+L1 drift: 0.6252
+Band: 0.2000
+Decision: TRADE
+```
+
+After the initial deployment, the same rule should usually hold through small weekly drift and only trade when the portfolio gets meaningfully far from target.
 
 ### What Happens After A 10% Broad AI Dip
 
@@ -359,11 +373,11 @@ Assumptions:
 | Item | Assumption |
 |---|---:|
 | Transaction cost | 10 bps per dollar of turnover |
-| Taxes | Not modeled in final CAGR tables |
+| Taxes | Modeled only in the after-tax band section; other CAGR tables are pre-tax |
 | Margin | None |
 | Options | None |
 | Dividends | Adjusted-price data where available |
-| Rebalance execution | Weekly target-weight rebalance |
+| Rebalance execution | Weekly signal; full rebalance only if L1 drift > 20% |
 | Daily return mode | Close-to-close unless otherwise stated |
 
 ## Backtest Results
@@ -372,16 +386,16 @@ Assumptions:
 
 Window: `2016-07-01` to `2026-07-01`. Starting account value for end-value math: `$278,726.16`.
 
-| Strategy | CAGR | Sharpe | Max drawdown | Worst 12m | Turnover | End value |
+| Strategy | CAGR | Sharpe | Max drawdown | Worst 12m | Target-diff turnover | End value |
 |---|---:|---:|---:|---:|---:|---:|
-| Selected no-cash weekly GLD strategy | 62.61% | 1.77 | -29.70% | -25.40% | 10.11x | $35.55M |
+| Original pre-tax max-CAGR GLD reference | 62.61% | 1.77 | -29.70% | -25.40% | 10.11x | $35.55M |
 | Same strategy with BIL defensive sleeve | 56.60% | 1.66 | -30.85% | -22.09% | 10.11x | $24.41M |
 | QQQ buy-and-hold | 21.94% | 1.00 | -35.12% | -34.76% | 0.00x | $2.01M |
 | BIL buy-and-hold | 2.19% | 8.01 | -0.26% | -0.13% | 0.00x | $0.35M |
 
 Interpretation:
 
-- The selected no-cash GLD strategy was the highest-return tested long-framework variant.
+- The original no-cash GLD reference was the highest pre-tax long-framework variant.
 - QQQ remains the clean benchmark. The selected model beat QQQ historically in this framework, but with much more strategy complexity, higher turnover, and larger bias risk.
 - BIL was rejected because the GLD defensive sleeve improved the tested return and slightly improved max drawdown.
 
@@ -391,7 +405,7 @@ The user asked whether the model should sell to avoid downturns. Those variants 
 
 | Strategy | CAGR | Sharpe | Max drawdown | Worst 12m | Turnover |
 |---|---:|---:|---:|---:|---:|
-| Selected no-cash weekly GLD strategy | 62.61% | 1.77 | -29.70% | -25.40% | 10.11x |
+| Original pre-tax max-CAGR GLD reference | 62.61% | 1.77 | -29.70% | -25.40% | 10.11x |
 | GLD floors obey 100-day gate | 58.73% | 1.71 | -29.37% | -27.29% | 11.52x |
 | GLD all-AI individual 100-day exit | 55.91% | 1.68 | -28.45% | -25.89% | 15.55x |
 | GLD individual 100-day plus QQQ 200-day exit | 55.36% | 1.68 | -27.48% | -24.86% | 17.84x |
@@ -399,7 +413,7 @@ The user asked whether the model should sell to avoid downturns. Those variants 
 Interpretation:
 
 - The hard sell-rule variants reduced some drawdown but lowered CAGR.
-- For the user's stated objective, return over conservativeness, the selected no-cash weekly GLD strategy remains the model choice.
+- For the user's stated objective, return over conservativeness, the no-cash GLD family remains the model choice.
 - If the user's preference changes toward drawdown control, the best alternative is the GLD individual/QQQ exit family or the floors-obey-100-day-gate variant.
 
 ### NBIS Redirect Sensitivity
@@ -408,11 +422,39 @@ Claude's independent audit suggested cutting the NBIS floor and storage redirect
 
 | Strategy | CAGR | Sharpe | Max drawdown | Worst 12m | Turnover | Current NBIS |
 |---|---:|---:|---:|---:|---:|---:|
-| Selected: floor 25%, redirect 100%, weekly | 62.61% | 1.77 | -29.70% | -25.40% | 10.11x | 26.45% |
-| Alternative: floor 15%, redirect 50%, weekly | 60.93% | 1.76 | -29.70% | -25.40% | 10.20x | 20.73% |
-| Alternative: floor 15%, redirect 50%, monthly | 56.18% | 1.62 | -30.16% | -20.31% | 5.14x | 20.73% |
+| Pre-tax reference: floor 25%, redirect 100%, weekly | 62.61% | 1.77 | -29.70% | -25.40% | 10.11x | 26.45% |
+| Post-audit ALT: floor 15%, redirect 50%, weekly | 60.93% | 1.76 | -29.70% | -25.40% | 10.20x | 20.73% |
+| Post-audit ALT: floor 15%, redirect 50%, monthly | 56.18% | 1.62 | -30.16% | -20.31% | 5.14x | 20.73% |
 
 Interpretation: the lower-redirect weekly version gives up 1.68 percentage points of backtested CAGR while cutting the largest single-name weight from 26.45% to 20.73%. That difference is small relative to the model's known bias and tax uncertainty, so the lower-redirect variant is a defensible risk-control modification.
+
+### After-Tax Band-Rebalance Test
+
+Claude correctly identified the missing decision-relevant test: taxable-account rebalancing. The repo now includes a holdings-level simulator with drifted positions, average cost basis, realized gains, annual tax payment, loss carryforward, 10 bps costs, and liquidation tax.
+
+This simulator is intentionally stricter than the Claude table because annual tax payments are deducted from portfolio value pro rata. The exact numbers are lower than Claude's, but the conclusion is the same: band rebalancing beats forced weekly rebalancing after tax, and monthly is not the tax fix.
+
+Window: `2016-07-01` to `2026-07-01`. Tax assumption: 50% short-term tax on strategy realized gains and liquidation gains; 33.1% long-term liquidation tax for QQQ buy-and-hold.
+
+| Strategy | Pre-tax CAGR | After-tax pre-liquidation | After liquidation | MaxDD after tax | Rebalances | True turnover |
+|---|---:|---:|---:|---:|---:|---:|
+| ALT weekly full rebalance | 60.3% | 36.8% | 34.5% | -39.3% | 523 | 11.0x |
+| ALT weekly L1>10% | 60.4% | 37.7% | 35.0% | -38.5% | 268 | 10.1x |
+| ALT weekly L1>15% | 59.5% | 37.6% | 34.9% | -38.8% | 189 | 9.4x |
+| **ALT weekly L1>20% selected** | **60.2%** | **38.5%** | **35.5%** | **-38.8%** | **147** | **8.9x** |
+| ALT weekly L1>25% | 61.4% | 39.4% | 36.3% | -39.1% | 126 | 8.5x |
+| ALT weekly L1>30% | 60.6% | 39.4% | 35.8% | -37.8% | 106 | 8.0x |
+| ALT monthly full rebalance | 56.5% | 36.7% | 33.6% | -41.3% | 121 | 5.6x |
+| 70% ALT / 30% extra QQQ, L1>10% | 48.1% | 31.8% | 29.1% | -37.3% | 205 | 6.7x |
+| 50% ALT / 50% extra QQQ, L1>10% | 40.1% | 28.5% | 25.5% | -37.2% | 160 | 4.6x |
+| QQQ buy-and-hold | 21.9% | 21.9% | 17.8% | -35.1% | 0 | 0.0x |
+
+Interpretation:
+
+- Full weekly rebalancing is no longer the best execution rule once tax is modeled.
+- Monthly reduces trading count but gives up too much pre-tax return and loses after liquidation.
+- A 25% band is slightly higher in this specific rerun, but that is a threshold-selection warning, not a reason to chase a more precise-looking number. The 20% band is the selected policy default because it was independently proposed, round-number robust, and already captures the tax benefit.
+- The chosen live rule is therefore: check weekly, trade only when L1 drift exceeds 20%, then rebalance fully to the current target weights.
 
 ### Cash Reserve Comparison
 
@@ -471,14 +513,15 @@ Interpretation:
 
 The selected model wins because:
 
-1. It had the highest long-framework CAGR among the practical tested variants.
-2. It beat the same strategy with BIL.
-3. It beat the cash-reserve overlays on CAGR.
-4. It kept the user's stated concentration constraints: high NBIS, DRAM instead of SNDK, keep SMCI.
-5. It kept QQQ as a 25% core instead of going fully single-theme.
-6. It has explicit buy/sell math instead of vague "buy the dip" discretion.
+1. The no-cash GLD family had the highest pre-tax CAGR among the practical tested variants.
+2. GLD beat BIL as the defensive/overflow sleeve in the tested framework.
+3. Cash-reserve overlays improved dry powder and drawdown, but materially reduced CAGR.
+4. The post-audit ALT weights cut NBIS from 26.45% to 20.73% for only a small pre-tax give-up.
+5. The after-tax simulator shows band rebalancing beats forced weekly rebalancing after liquidation.
+6. It kept the user's stated constraints: high NBIS, DRAM instead of SNDK, keep SMCI, 0% cash.
+7. It has explicit buy/sell math instead of vague "buy the dip" discretion.
 
-The model was not chosen because it is safe. It was chosen because the user explicitly prefers return over conservativeness.
+The model was not chosen because it is safe. It was chosen because the user explicitly prefers return over conservativeness, and because the tax-aware execution rule removes unnecessary small trades without adding discretionary judgment.
 
 ## Limitations
 
@@ -488,8 +531,8 @@ These are material:
 - The universe is selected from today's AI/semis winners, so survivorship/theme-selection bias is present.
 - NBIS, GEV, SNDK, and DRAM do not provide clean full 10-year live histories.
 - DRAM is a live implementation substitute, not a clean historical backtest instrument.
-- Taxes are not modeled in the final CAGR tables.
-- The strategy turns over about 10x per year, which can create taxable events and slippage.
+- Taxes are modeled only in the band-rebalance simulator; it still omits lot selection, tax-loss harvesting, estimated-payment timing, and exact personal tax details.
+- The selected 20% band strategy still turns over about 8.9x per year in the simulator, which can create taxable events and slippage.
 - A second-source Stooq CSV check failed from this environment with HTTP 404; the full grid remains Yahoo/yfinance-sourced.
 - No backtest can validate today's future returns.
 
@@ -504,6 +547,8 @@ Primary final files:
 - `outputs/tomorrow_down_10_no_reserve_gld_actions.csv`
 - `outputs/NBIS_REDIRECT_SENSITIVITY.md`
 - `outputs/alternative_nbis_redirect_order_sheet.csv`
+- `outputs/BAND_REBALANCE_AFTERTAX.md`
+- `outputs/band_rebalance_aftertax_results.csv`
 
 Supporting research:
 
@@ -523,3 +568,5 @@ Key scripts:
 - `work/cash_dip_reserve_backtest.py`
 - `work/current_1204_order_sheet.py`
 - `work/nbis_redirect_sensitivity.py`
+- `work/band_rebalance_aftertax.py`
+- `work/live_band_decision.py`

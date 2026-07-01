@@ -7,7 +7,7 @@ Goal: find and validate a strategy that genuinely beats buy-and-hold QQQ on a ri
 
 Latest user-selected risk-seeking strategy: [`outputs/FINAL_NO_CASH_GLD_STRATEGY.md`](outputs/FINAL_NO_CASH_GLD_STRATEGY.md).
 
-This addendum documents the no-cash, weekly-rebalanced, GLD-defensive AI/semis strategy with exact weights, current order sheet, buy/sell rules, tested data modes, benchmarks, exit-rule comparisons, and cash-reserve comparisons.
+This addendum documents the no-cash, weekly-signal, band-rebalanced, GLD-defensive AI/semis strategy with exact weights, current order sheet, buy/sell rules, tested data modes, benchmarks, exit-rule comparisons, cash-reserve comparisons, and after-tax band-rebalance tests.
 
 Backtest code and cached inputs used by the Codex audit are in [`work/`](work/).
 

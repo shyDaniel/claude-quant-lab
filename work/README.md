@@ -47,6 +47,8 @@ The cache is included for reproducibility. The data is public-market/yfinance-de
 | `cash_dip_reserve_backtest.py` | Cash reserve and dip-buy overlay tests. | `outputs/CASH_DIP_RESERVE_BACKTEST.md` |
 | `current_1204_order_sheet.py` | Rebuilds the 12:04 screenshot GLD order sheet from committed cache and holdings. | `outputs/current_1204_exact_order_sheet_GLD_defensive.csv` |
 | `nbis_redirect_sensitivity.py` | Tests lower NBIS floor/redirect and monthly cadence alternatives. | `outputs/NBIS_REDIRECT_SENSITIVITY.md` |
+| `band_rebalance_aftertax.py` | Holdings-level after-tax simulator for full, monthly, and L1-band execution rules. | `outputs/BAND_REBALANCE_AFTERTAX.md` |
+| `live_band_decision.py` | Live/current-holdings L1 band checker that prints HOLD/TRADE and order sheet. | terminal output |
 
 ## Final Strategy Files
 
@@ -59,6 +61,8 @@ The final user-selected strategy is documented in:
 - `outputs/tomorrow_down_10_no_reserve_gld_actions.csv`
 - `outputs/NBIS_REDIRECT_SENSITIVITY.md`
 - `outputs/alternative_nbis_redirect_order_sheet.csv`
+- `outputs/BAND_REBALANCE_AFTERTAX.md`
+- `outputs/band_rebalance_aftertax_results.csv`
 
 ## Important Caveats
 
@@ -66,4 +70,5 @@ The final user-selected strategy is documented in:
 - The universe includes current AI/semis winners, so survivorship/theme-selection bias is present.
 - NBIS, GEV, SNDK, and DRAM do not provide clean full 10-year live histories.
 - DRAM is a live substitution for the historical SNDK memory proxy.
-- Taxes are not modeled in the final CAGR tables.
+- Taxes are modeled only in `band_rebalance_aftertax.py`; other CAGR tables are pre-tax.
+- The after-tax simulator uses average-cost accounting and does not model lot selection, tax-loss harvesting, or personal estimated-tax timing.
