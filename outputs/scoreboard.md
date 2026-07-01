@@ -170,6 +170,27 @@ DEFERRED buy-hold is uncertain (my uniform-annual tax model here is too harsh on
 - IRA/Roth + willing to sell monthly calls -> trend-gated covered call is a real risk-adjusted upgrade.
 Beat Codex: it only PLANNED option backtests (DCA_PUT_ENTRY etc.); I ran the synthesis.
 
+## exp15 — stress-test my own winner (IV sensitivity + proper after-tax) -> SETTLED
+A. IV sensitivity of trend-gated covered call: Sharpe 0.74 (realized*1.00, no VRP) -> 0.99
+   (realized*1.15). Even at ZERO vol-premium it beats QQQ (0.54) & core (0.60) -> edge is
+   STRUCTURAL (vol reduction + trend), not just an IV assumption. Robust.
+B. PROPER after-tax, TAXABLE account (deferred LTCG for buy-hold/core; annual short-term for CC):
+   | strategy | pre-tax $ | after-tax $ |
+   | QQQ buy-hold | $4.21M | $3.28M |
+   | MY core | $2.96M | $2.33M |
+   | trend-gated covered call | $3.63M | **$1.51M** |
+   DECISIVE: in a TAXABLE account the covered call keeps only 42% (monthly short-term premium
+   taxed yearly) -> WORSE than buy-hold AND the simple core after tax, despite better Sharpe.
+   Same lesson as LEAPS: options are tax-dominated in taxable; only viable in IRA/Roth.
+
+## SETTLED FINAL MAP (account-location decides)
+- TAXABLE (simplest, best after-tax): QQQ buy-hold (max wealth) or the simple trend core
+  (half the drawdown). NO options — tax code punishes them.
+- IRA/ROTH (willing to sell monthly calls): trend-gated covered call = best risk-adjusted
+  (Sharpe 0.87-0.91, DD -27%), tax-free so the edge stands.
+The one real portfolio edge across 15 experiments = trend/absolute-momentum drawdown control;
+premium-selling (VRP) adds risk-adjusted return but only survives in a sheltered account.
+
 ## FINAL STATE
 Defensible best executable strategy = **QQQ 12mo-mom -> T-bills, monthly** (100% core),
 optional <=20% AI-momentum sleeve for growth-seekers. Proven, simplest, lowest-risk, robust.
