@@ -6,11 +6,33 @@ Date: 2026-07-01
 
 The selected model is the **no-cash-reserve, weekly-rebalanced, GLD-defensive AI/semis strategy**.
 
+## Post-Claude Audit Response
+
+Claude's independent audit found no fabrication in the checkable math, but it correctly identified two important implementation gaps and one strategy-design issue:
+
+- GLD was not cached, so offline reproduction of GLD rows failed.
+- The 12:04 order-sheet generator was not committed.
+- Today's 26.4537% NBIS target came mostly from `storage_excess_to_nbis=1.00`, not from the explicit 25% floor.
+
+The repo now fixes the first two gaps with `work/cache/gld_prices.csv` and `work/current_1204_order_sheet.py`.
+
+The strict max-CAGR model is still the selected argmax. However, after the audit, the cleaner real-money no-cash variant is:
+
+```text
+nbis_floor = 15%
+storage_excess_to_nbis = 50%
+rebalance = weekly
+cash = 0%
+GLD defensive sleeve unchanged
+```
+
+That version reduces current NBIS from 26.45% to 20.73% while reducing cached-GLD CAGR from 62.61% to 60.93%. That 1.68 percentage-point backtest give-up is small relative to the model's survivorship, lookahead, short-history, and tax uncertainty. Use the original 26.45% NBIS version only if intentionally choosing maximum NBIS concentration.
+
 Plain English:
 
 - Do not keep a cash sleeve.
 - Keep QQQ as a 25% core.
-- Put the rest into a concentrated AI/semis basket, with NBIS as a conviction floor.
+- Put the rest into a concentrated AI/semis basket, with NBIS getting weight from both its score and the storage-overflow redirect.
 - Use GLD as the defensive/overflow sleeve instead of BIL or cash.
 - Keep SMCI at the current small position size.
 - Use DRAM as the live memory/HBM bucket instead of buying SNDK.
@@ -22,11 +44,11 @@ This is rule-based research, not fiduciary advice or a guarantee.
 
 ## Current Target Weights
 
-These are the live target weights for the user's current preference set: no cash, no BIL, GLD defensive sleeve, DRAM instead of SNDK, keep SMCI, keep NBIS conviction.
+These are the live target weights for the user's current preference set: no cash, no BIL, GLD defensive sleeve, DRAM instead of SNDK, keep SMCI, keep high NBIS exposure.
 
 | Ticker | Target weight | Role |
 |---|---:|---|
-| NBIS | 26.4537% | Conviction AI infrastructure floor |
+| NBIS | 26.4537% | AI infrastructure plus storage-overflow redirect |
 | QQQ | 25.0000% | Core Nasdaq-100 growth exposure |
 | MU | 19.8080% | Memory/HBM cycle exposure |
 | NVDA | 7.7241% | AI accelerator/platform exposure |
@@ -157,9 +179,9 @@ On each weekly rebalance date:
 5. Route unallocated/defensive weight to GLD.
 ```
 
-### NBIS Conviction Overlay
+### NBIS Overlay
 
-The user is highly bullish on NBIS, so NBIS is handled as a conviction overlay:
+The user is highly bullish on NBIS, so NBIS is handled with both a floor and a storage-overflow redirect:
 
 ```text
 NBIS floor = 25% of account
@@ -168,7 +190,19 @@ storage cap = 30% of account across MU/SNDK/STX in the historical model
 storage excess redirect = 100% to NBIS when NBIS is active
 ```
 
-This means NBIS does not need to be above its 100-day moving average to keep the floor. It needs to have enough valid trading history. That is an intentional conviction override, not something the pure optimizer discovered from 10 years of NBIS data.
+This means NBIS does not need to be above its 100-day moving average to receive the overlay. It needs to have enough valid trading history. That is an intentional conviction/redirect override, not something the pure optimizer discovered from 10 years of NBIS data.
+
+Important correction from independent audit: today's 26.4537% NBIS target is **not mainly the 25% floor**. On 2026-07-01:
+
+```text
+base model NBIS score weight = 2.6219%
+base model storage weight before cap = 53.8318%
+storage cap = 30.0000%
+storage excess redirected to NBIS = 23.8318%
+final NBIS weight = 2.6219% + 23.8318% = 26.4537%
+```
+
+So the selected model currently owns 26.4537% NBIS because `storage_excess_to_nbis=1.00` redirects the memory/storage excess into NBIS. A separate sensitivity file tests a lower-concentration alternative with `nbis_floor=15%` and `storage_excess_to_nbis=0.50`.
 
 ### SMCI Keep Overlay
 
@@ -243,7 +277,7 @@ sell_dollars = current_position_value - target_dollars
 For NBIS specifically, the model sells NBIS in these situations:
 
 1. NBIS rallies enough that it becomes above its target weight, then the weekly rebalance trims it back.
-2. The storage/score overlay no longer redirects enough weight to NBIS and the NBIS target falls toward the 25% floor.
+2. The storage/score overlay no longer redirects enough weight to NBIS and the NBIS target falls toward the active floor or base score.
 3. NBIS loses valid tradable history or otherwise becomes ineligible in the data; then the conviction floor turns off and the base score determines target weight.
 4. The user explicitly switches to the lower-drawdown variant where conviction floors obey the 100-day moving-average gate.
 
@@ -278,6 +312,7 @@ Primary research data:
 - Cached fundamentals: `work/cache/grid_fundamentals_raw.csv`
 - Main grid scripts use yfinance/Yahoo-sourced data.
 - GLD was fetched by the GLD exit-rule script and included in the final generated comparison outputs.
+- GLD is now cached in `work/cache/gld_prices.csv` so offline reruns do not depend on a live Yahoo request.
 
 Data range in cached price file:
 
@@ -367,6 +402,18 @@ Interpretation:
 - For the user's stated objective, return over conservativeness, the selected no-cash weekly GLD strategy remains the model choice.
 - If the user's preference changes toward drawdown control, the best alternative is the GLD individual/QQQ exit family or the floors-obey-100-day-gate variant.
 
+### NBIS Redirect Sensitivity
+
+Claude's independent audit suggested cutting the NBIS floor and storage redirect. The exact cached-GLD rerun shows:
+
+| Strategy | CAGR | Sharpe | Max drawdown | Worst 12m | Turnover | Current NBIS |
+|---|---:|---:|---:|---:|---:|---:|
+| Selected: floor 25%, redirect 100%, weekly | 62.61% | 1.77 | -29.70% | -25.40% | 10.11x | 26.45% |
+| Alternative: floor 15%, redirect 50%, weekly | 60.93% | 1.76 | -29.70% | -25.40% | 10.20x | 20.73% |
+| Alternative: floor 15%, redirect 50%, monthly | 56.18% | 1.62 | -30.16% | -20.31% | 5.14x | 20.73% |
+
+Interpretation: the lower-redirect weekly version gives up 1.68 percentage points of backtested CAGR while cutting the largest single-name weight from 26.45% to 20.73%. That difference is small relative to the model's known bias and tax uncertainty, so the lower-redirect variant is a defensible risk-control modification.
+
 ### Cash Reserve Comparison
 
 The user asked whether to keep 10-20% cash to buy dips. Those variants were tested, then the user selected no cash.
@@ -427,7 +474,7 @@ The selected model wins because:
 1. It had the highest long-framework CAGR among the practical tested variants.
 2. It beat the same strategy with BIL.
 3. It beat the cash-reserve overlays on CAGR.
-4. It kept the user's stated conviction constraints: high NBIS, DRAM instead of SNDK, keep SMCI.
+4. It kept the user's stated concentration constraints: high NBIS, DRAM instead of SNDK, keep SMCI.
 5. It kept QQQ as a 25% core instead of going fully single-theme.
 6. It has explicit buy/sell math instead of vague "buy the dip" discretion.
 
@@ -455,6 +502,8 @@ Primary final files:
 - `outputs/exit_rule_comparison_full_results.csv`
 - `outputs/cash_dip_reserve_results.csv`
 - `outputs/tomorrow_down_10_no_reserve_gld_actions.csv`
+- `outputs/NBIS_REDIRECT_SENSITIVITY.md`
+- `outputs/alternative_nbis_redirect_order_sheet.csv`
 
 Supporting research:
 
@@ -472,3 +521,5 @@ Key scripts:
 - `work/smci_keep_backtest.py`
 - `work/exit_rule_comparison.py`
 - `work/cash_dip_reserve_backtest.py`
+- `work/current_1204_order_sheet.py`
+- `work/nbis_redirect_sensitivity.py`

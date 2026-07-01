@@ -16,6 +16,7 @@ sys.path.append(str(WORK))
 
 from medium_transform_grid import (  # noqa: E402
     ACCOUNT_VALUE,
+    CACHE,
     START,
     TRADING_DAYS,
     UNIVERSE,
@@ -44,9 +45,16 @@ def calc_metrics(r: pd.Series, turn: float, start: str) -> dict[str, float]:
 def add_gold_data(close: pd.DataFrame, open_: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     if "GLD" in close.columns and "GLD" in open_.columns:
         return close, open_
-    data = yf.download("GLD", start="2015-01-01", auto_adjust=True, progress=False)
-    if isinstance(data.columns, pd.MultiIndex):
-        data.columns = data.columns.get_level_values(0)
+    cache_path = CACHE / "gld_prices.csv"
+    if cache_path.exists():
+        data = pd.read_csv(cache_path, parse_dates=["Date"], index_col="Date")
+    else:
+        data = yf.download("GLD", start="2015-01-01", auto_adjust=True, progress=False)
+        if isinstance(data.columns, pd.MultiIndex):
+            data.columns = data.columns.get_level_values(0)
+        data = data[["Open", "Close"]].dropna()
+        data.index.name = "Date"
+        data.to_csv(cache_path)
     close = close.copy()
     open_ = open_.copy()
     close["GLD"] = data["Close"].reindex(close.index).ffill()

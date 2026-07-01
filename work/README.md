@@ -12,6 +12,7 @@ Python dependencies used by these scripts:
 numpy
 pandas
 matplotlib
+tabulate
 yfinance
 ```
 
@@ -24,6 +25,7 @@ The scripts are plain Python and write artifacts to `outputs/`.
 - `grid_prices.csv` - adjusted close prices for the AI/semis grid.
 - `grid_open_prices.csv` - adjusted open prices for timing-mode tests.
 - `grid_fundamentals_raw.csv` - yfinance fundamental snapshot used for market-cap and earnings transforms.
+- `gld_prices.csv` - adjusted GLD open/close data used by the GLD defensive-sleeve runs.
 - `return_seeker_prices.csv` - earlier return-seeker price cache.
 - `audit_adjclose.csv` - earlier audit adjusted-close cache.
 
@@ -43,6 +45,8 @@ The cache is included for reproducibility. The data is public-market/yfinance-de
 | `smci_keep_backtest.py` | SMCI floor overlay and DRAM live substitution. | `outputs/SMCI_KEEP_BACKTEST.md` |
 | `exit_rule_comparison.py` | No-rebalance, downturn-exit, and GLD-vs-BIL comparison. | `outputs/EXIT_RULE_COMPARISON.md` |
 | `cash_dip_reserve_backtest.py` | Cash reserve and dip-buy overlay tests. | `outputs/CASH_DIP_RESERVE_BACKTEST.md` |
+| `current_1204_order_sheet.py` | Rebuilds the 12:04 screenshot GLD order sheet from committed cache and holdings. | `outputs/current_1204_exact_order_sheet_GLD_defensive.csv` |
+| `nbis_redirect_sensitivity.py` | Tests lower NBIS floor/redirect and monthly cadence alternatives. | `outputs/NBIS_REDIRECT_SENSITIVITY.md` |
 
 ## Final Strategy Files
 
@@ -53,6 +57,8 @@ The final user-selected strategy is documented in:
 - `outputs/exit_rule_comparison_full_results.csv`
 - `outputs/cash_dip_reserve_results.csv`
 - `outputs/tomorrow_down_10_no_reserve_gld_actions.csv`
+- `outputs/NBIS_REDIRECT_SENSITIVITY.md`
+- `outputs/alternative_nbis_redirect_order_sheet.csv`
 
 ## Important Caveats
 

@@ -1,0 +1,13 @@
+strategy_id,ticker,current_value,target_value,trade_dollars,price,approx_shares
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,MU,26576.5,99068.55832292097,72492.05832292097,1032.280029296875,70.22518722201578
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,QQQ,72839.0,69681.54,-3157.4600000000064,725.1699829101562,-4.354096383483643
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,SNDK,0.0,37090.321709673335,37090.321709673335,2032.219970703125,18.25113533198894
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,NVDA,19954.995300000002,21529.106663390543,1574.1113633905406,197.5800018310547,7.966956922778656
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,BIL,0.0,13936.307999999937,13936.307999999937,91.4000015258789,152.47601495995627
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,STX,0.0,13884.369464419611,13884.369464419611,915.1900024414062,15.171023970302318
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,GEV,0.0,8531.697658085504,8531.697658085504,1134.3499755859375,7.521221705566255
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,AMD,0.0,7696.302226905468,7696.302226905468,540.8800048828125,14.229223039171055
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,NBIS,28190.399999999998,7307.95595460458,-20882.444045395416,229.17999267578125,-91.1180936938837
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,CASH,102555.39,0.0,-102555.39,,
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,DRAM,20106.670199999997,0.0,-20106.670199999997,,
+ROBUST_size=sqrt_raw_cap|earn=square|mom=1.5|top=7|weekly|close,SMCI,8448.0,0.0,-8448.0,27.649999618530273,-305.53345810313795
