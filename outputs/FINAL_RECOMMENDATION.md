@@ -39,7 +39,25 @@ So the best SIMPLE, LOW-RISK core is 12-month momentum with a safe risk-off leg.
 - Optional "fun money" (≤10%, sheltered): the AI/tech momentum sleeve (exp02) — high risk,
   documented, NOT the core.
 
-## Status: FINAL candidate locked. Ongoing refinement (per goal)
-Refinements still being stress-tested each cycle (rebalance frequency vs drawdown, T-bill
-vs IEF risk-off, a tiny AI sleeve's effect) — but the CORE above is the defensible answer
-and will only change if data shows a simpler/lower-risk rule that's also robust.
+## Refinement confirmed (exp05, 2007-2026 where T-bills exist)
+| Config | CAGR | Sharpe | MaxDD | Worst-12mo | Turnover |
+|--------|------|--------|-------|-----------|----------|
+| QQQ buy-hold | 16.6% | 0.80 | -53% | -48% | 0 |
+| **12mo-mom MONTHLY -> T-bills (LOWEST RISK)** | **15.5%** | **0.88** | -29% | **-22%** | 0.6x |
+| 12mo-mom MONTHLY -> IEF (a bit more return) | 16.4% | 0.91 | -29% | -28% | 0.6x |
+| 12mo-mom WEEKLY -> T-bills | 13.5% | 0.80 | -29% | -22% | 1.5x |
+
+Confirmed, data-driven:
+- **Monthly beats weekly** — weekly did NOT reduce drawdown (-29% either way) but cut
+  return and doubled turnover. So the SIMPLEST cadence is also the best. Locked: monthly.
+- **T-bills = lowest-risk risk-off** (best worst-year -22%; they didn't fall in 2022 like
+  IEF did → -28%). Use T-bills for lowest risk; IEF only if you want ~+1%/yr and accept
+  bond risk.
+- Monthly T-bill version captures **93% of QQQ's return with HALF the drawdown and a HIGHER
+  Sharpe (0.88 vs 0.80)**. This is the final, simplest, lowest-risk answer.
+
+## Status: FINAL and refined.
+Core is locked: **QQQ 12-month momentum, monthly, T-bills when off.** Data-confirmed
+simplest + lowest-risk. Only a rule that is simpler AND lower-risk AND robust would replace
+it — none found across 5 experiments + Codex's ~30 strategies. Ongoing cycles will keep
+probing (e.g., does a tiny AI sleeve help the frontier?) but will not complicate the core.
