@@ -106,6 +106,20 @@ Data verdict:
   = simpler + safest worst-case + I killed the mirages (overnight, LEAPS-as-free-lunch) faster.
 LEAPS caveat: synthetic BS on adjusted price, no tax -> REAL leaps worse than shown.
 
+## AFTER-TAX head-to-head (exp10, 2007-2026, taxable account) — LEAPS verdict
+| Strategy | Pre-tax $ | After-tax $ | Tax drag |
+|----------|-----------|-------------|----------|
+| QQQ buy-hold | $5.96M | $4.62M | 23% |
+| Codex core (mom->IEF) | $5.75M | $4.45M | 23% |
+| MY core (mom->T-bills) | $4.96M | $3.85M | 22% |
+| LEAPS gated 55% | $10.9M | $3.18M | **71%** |
+| LEAPS ungated 55% | $13.6M | $2.89M | **79%** |
+DECISIVE: LEAPS's pre-tax dollar edge is a taxable-account ILLUSION. Rolled annually =>
+short-term gains taxed EVERY year => 71-79% drag => $10.9M -> $3.18M, BELOW buy-hold and the
+simple trend rules. In a TAXABLE account LEAPS is strictly dominated (more risk AND less $).
+LEAPS only makes sense in an IRA/Roth (no annual tax drag) as a small gated high-risk sleeve.
+After-tax winner overall = buy-hold QQQ (deferral is powerful); simple > complex after tax.
+
 ## FINAL STATE
 Defensible best executable strategy = **QQQ 12mo-mom -> T-bills, monthly** (100% core),
 optional <=20% AI-momentum sleeve for growth-seekers. Proven, simplest, lowest-risk, robust.
