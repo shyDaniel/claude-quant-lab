@@ -137,6 +137,22 @@ drawdown. Winner-picking (AI basket) was mostly survivorship. Confirms the simpl
 right expression of the only real edge. Sector-mom is a clean alt but LOWER return than the
 QQQ core (9.3% vs ~15%), so it doesn't replace the core.
 
+## exp13 — VRP premium-selling (Tian's real gem) — FIRST of his ideas that WORKS
+1999-2026 monthly, sold IV = realized*1.10, net 1% spread:
+| Strategy | CAGR | Sharpe | MaxDD | w12mo |
+|----------|------|--------|-------|-------|
+| QQQ buy-hold | 10.2% | 0.54 | -81% | -67% |
+| Covered-call 2% OTM | 11.7% | 0.82 | -57% | -47% |
+| Put-write ATM | 9.3% | 0.76 | -52% | -44% |
+REAL edge: 2%-OTM covered-call beats QQQ on return AND Sharpe (0.82 vs 0.54) AND drawdown.
+Harvests the volatility risk premium (option SELLERS get paid for IV overpricing) — matches
+CBOE BXM/PUT literature. Vindicates Tian's own QYLD/JEPQ debunk: ATM full-cap (put-write)
+UNDERperforms QQQ on return; you must keep some upside (2% OTM). CAVEATS: (1) magnitude is
+sensitive to the VRP/IV assumption (conservative IV shrinks it); (2) TAX-UGLY (monthly
+short-term premium @37% -> best in IRA/Roth); (3) still -57% DD (owns QQQ in crashes).
+NEXT (exp14): combine covered-call overlay WITH the trend filter (sell calls only when trend
+on, else cash) -> aim for the VRP Sharpe edge + the core's -29% drawdown. Most promising synthesis.
+
 ## FINAL STATE
 Defensible best executable strategy = **QQQ 12mo-mom -> T-bills, monthly** (100% core),
 optional <=20% AI-momentum sleeve for growth-seekers. Proven, simplest, lowest-risk, robust.
