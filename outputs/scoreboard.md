@@ -153,6 +153,23 @@ short-term premium @37% -> best in IRA/Roth); (3) still -57% DD (owns QQQ in cra
 NEXT (exp14): combine covered-call overlay WITH the trend filter (sell calls only when trend
 on, else cash) -> aim for the VRP Sharpe edge + the core's -29% drawdown. Most promising synthesis.
 
+## exp14 — TREND-GATED COVERED CALL (the synthesis) = best risk-adjusted in either repo
+1999-2026 monthly: sell 2%-OTM QQQ calls when trend ON, cash when OFF.
+| Strategy | CAGR | Sharpe | MaxDD | w12mo |
+|----------|------|--------|-------|-------|
+| QQQ buy-hold | 10.2% | 0.54 | -81% | -67% |
+| MY core (trend->cash) | 8.8% | 0.60 | -42% | -42% |
+| Covered-call (no gate) | 11.7% | 0.82 | -57% | -47% |
+| **Trend-gated covered-call** | 9.2% | **0.87** | **-27.7%** | **-27.2%** |
+Best Sharpe (0.87) AND lowest drawdown (-28%) of everything tested = VRP income + trend
+crash-protection. CAVEATS (honest): (1) sensitive to the VRP/IV assumption (realized*1.10);
+(2) TAX-UGLY in taxable (monthly short-term premium) -> belongs in IRA/Roth; after-tax edge vs
+DEFERRED buy-hold is uncertain (my uniform-annual tax model here is too harsh on buy-hold);
+(3) requires selling monthly options (more complex than the no-option core). So:
+- Newbie / taxable / simplest -> the no-option core (QQQ 12mo-mom -> T-bills) stays the pick.
+- IRA/Roth + willing to sell monthly calls -> trend-gated covered call is a real risk-adjusted upgrade.
+Beat Codex: it only PLANNED option backtests (DCA_PUT_ENTRY etc.); I ran the synthesis.
+
 ## FINAL STATE
 Defensible best executable strategy = **QQQ 12mo-mom -> T-bills, monthly** (100% core),
 optional <=20% AI-momentum sleeve for growth-seekers. Proven, simplest, lowest-risk, robust.
