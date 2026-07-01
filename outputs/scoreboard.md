@@ -234,3 +234,18 @@ premium-selling (VRP) adds risk-adjusted return but only survives in a sheltered
 Defensible best executable strategy = **QQQ 12mo-mom -> T-bills, monthly** (100% core),
 optional <=20% AI-momentum sleeve for growth-seekers. Proven, simplest, lowest-risk, robust.
 Ongoing cycles will keep probing but the core is locked.
+
+## exp19 — THE AI-CAPEX AHA (what actually drives QQQ + the smart way to concentrate)
+QQQ 3mo decomposition: MU (+242%, wt 4.8%) contributed +11.6% to QQQ, AMD (+186%) +6.9% —
+2 semis (~8.5% of index) = ~18% of QQQ's 3mo move; MSFT contributed +0.05% (dead weight).
+=> QQQ is a ~50%-DILUTED AI-semiconductor bet. Un-diluting it:
+| strategy (3yr, AI-capex boom) | CAGR | Sharpe | MaxDD |
+| QQQ buy-hold | 27% | 1.27 | -23% |
+| AI-capex supply-chain basket (12 EW: NVDA/AMD/AVGO/MU/SNDK/MRVL/STX/ANET/VST/CEG/GEV/VRT) | 129% | 2.25 | -43% |
+| **AI-capex + 100d trend gate (RIDE boom, EXIT bust)** | **99%** | **2.18** | **-22%** |
+The trend-managed AI-capex basket = 99% CAGR at QQQ-level drawdown. HONEST: 3yr = ONE regime
+(the AI capex boom); 99% won't persist; survivorship-flavored. But the STRUCTURE (concentrate in
+the real driver + trend-exit the cyclical crash) is the legit "beat QQQ" thesis while it lasts.
+WHY: AI capex supercycle -> $ to picks&shovels (real earnings now); software lags (AI monetization
+unproven + they're the spenders). WHEN-to-exit: trend gate + watch hyperscaler capex guidance,
+memory spot prices, HBM/GPU lead times, inventory.
