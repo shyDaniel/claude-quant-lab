@@ -36,8 +36,13 @@ So the best SIMPLE, LOW-RISK core is 12-month momentum with a safe risk-off leg.
 - Simplicity is a feature: one monthly check, ~0.6 trades/yr, tax-friendly, no leverage, no
   options, no thin AI names. A newbie can run it. That is the point.
 - Best placed in an IRA/Roth (tax-free switches). In taxable, it's already low-turnover.
-- Optional "fun money" (≤10%, sheltered): the AI/tech momentum sleeve (exp02) — high risk,
-  documented, NOT the core.
+- Optional growth add-on (≤20%, sheltered, "fun money"): the AI/tech momentum sleeve.
+  exp06 shows a blend of 80% core + 20% AI historically beat QQQ on return, Sharpe, AND
+  drawdown (20.8%/1.04/-30% vs QQQ 20.5%/1.00/-35%, 2013-2026) — BUT that is survivorship-
+  inflated (the basket is today's winners). Forward-looking, haircut the sleeve; it then
+  only modestly beats the core, not QQQ. So: legitimate for a growth-seeker who wants AI
+  exposure and accepts higher risk, capped ≤20%. NOT the core. The 100% core is the
+  simplest, lowest-risk answer and stays the recommendation.
 
 ## Refinement confirmed (exp05, 2007-2026 where T-bills exist)
 | Config | CAGR | Sharpe | MaxDD | Worst-12mo | Turnover |

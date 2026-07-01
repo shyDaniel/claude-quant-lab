@@ -67,7 +67,22 @@ All numbers net of stated costs. Honest failures included — that's the point.
 | 04 | QQQ 12mo-mom -> T-bills | 2004-2026 | 12.9% | 0.77 | -29% | simplest, best worst-year -22% |
 | 04 | QQQ 200d-SMA -> cash | 2004-2026 | 10.2% | 0.68 | -39% | inferior — rejected |
 
-## Ongoing refinement (goal: keep improving, simplest + lowest risk)
-- Stress-test rebalance frequency (monthly vs weekly) vs drawdown/turnover.
-- T-bill vs IEF risk-off in rate-shock regimes (2022).
-- Whether a tiny AI sleeve improves the frontier without wrecking simplicity/risk.
+## exp06 — core + AI sleeve (does AI earn a place?)
+Blend of the locked core (QQQ 12mo-mom->T-bills) with the AI-momentum sleeve, 2013-2026:
+| Blend | CAGR | Sharpe | MaxDD | w12mo |
+|-------|------|--------|-------|-------|
+| 100% core | 16.1% | 0.89 | -29% | -22% |
+| 90/10 | 18.4% | 0.97 | -29% | -23% |
+| 80/20 | 20.8% | 1.04 | -30% | -25% |
+| 70/30 | 23.2% | 1.10 | -31% | -26% |
+| QQQ buy-hold | 20.5% | 1.00 | -35% | -35% |
+Adding AI monotonically raises Sharpe + return with only modest extra drawdown; 80/20 beats
+QQQ on return AND Sharpe AND drawdown in-sample. BUT survivorship-inflated — haircut the
+sleeve's forward return and the blend only modestly beats the core, not QQQ. VERDICT: core
+stays the simplest/lowest-risk recommendation; a capped **<=20% AI sleeve is a legit OPTIONAL
+growth add-on** (the user's AI angle), clearly flagged high-risk + survivorship-biased.
+
+## FINAL STATE
+Defensible best executable strategy = **QQQ 12mo-mom -> T-bills, monthly** (100% core),
+optional <=20% AI-momentum sleeve for growth-seekers. Proven, simplest, lowest-risk, robust.
+Ongoing cycles will keep probing but the core is locked.
