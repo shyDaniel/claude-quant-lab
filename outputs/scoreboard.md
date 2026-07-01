@@ -40,8 +40,22 @@ All numbers net of stated costs. Honest failures included — that's the point.
   This is the most promising lead so far and the first thing to genuinely beat QQQ on
   risk-adjusted terms in either repo — but it must be DE-BIASED before trusting the margin.
 
+- **exp03 (de-bias + de-risk):** two honest negatives that reshape the plan.
+  1. OOS split: AI-momentum LOST to equal-weight-hold on Sharpe in 2013-2019 (1.47 vs
+     1.66); only won in 2020-2026. The momentum edge is a recent-regime + survivorship
+     artifact, NOT robust. Downgraded.
+  2. Simple QQQ 200d-SMA gate on the AI book: return 40%→30%, drawdown only -39%→-37%,
+     Sharpe 1.30→1.15 (WORSE risk-adjusted). Market-level gate can't catch idiosyncratic
+     tech crashes. Rejected as a fix.
+  Winner on the goal's lens (simplest + LOWEST RISK): the plain **QQQ 200d-SMA trend rule**
+  — DD -22% (vs QQQ -35%, AI-mom -39%), Sharpe ~0.98, robust in BOTH halves (0.84 / 1.12).
+
+## LEADING FINAL CANDIDATE (simplest + lowest risk, refine from here)
+A simple QQQ trend rule is the low-risk core. Both repos independently converge here.
+My job: find the SIMPLEST, LOWEST-RISK variant with the best robust risk-adjusted return,
+and lock it. AI-momentum stays a documented high-risk/high-return sleeve, NOT the core.
+
 ## Next
-- exp03: DE-BIAS the momentum result — (a) broader/less-cherry-picked universe, (b) OOS
-  split (does momentum beat EW in BOTH halves?), (c) add a trend/QQQ risk-off overlay to
-  cut the -39% drawdown. This decides if exp02 is a real edge or a survivorship mirage.
-- exp04: trend-gated deep-ITM LEAPS, my own honest costs (independent of Codex's ~19.7%).
+- exp04: pick the FINAL low-risk core — compare QQQ 200d-SMA vs 12-mo momentum vs a
+  dual-momentum (QQQ-on / defensive-asset-off), all OOS + after-tax, choose the simplest
+  with the best robust Sharpe & shallowest drawdown. Lock it as the recommendation.
