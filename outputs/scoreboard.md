@@ -183,6 +183,15 @@ B. PROPER after-tax, TAXABLE account (deferred LTCG for buy-hold/core; annual sh
    taxed yearly) -> WORSE than buy-hold AND the simple core after tax, despite better Sharpe.
    Same lesson as LEAPS: options are tax-dominated in taxable; only viable in IRA/Roth.
 
+## exp16 — bootstrap significance of the covered call -> MISSION FULFILLED (in IRA)
+5000 block-bootstraps (1999-2026, monthly):
+- CC vs QQQ: P(Sharpe better) = 97.7%, 90% CI [+0.07, +0.74] (EXCLUDES ZERO), P(shallower DD)=100%.
+- CC vs my core: P(Sharpe better) = 100%, CI [+0.21, +0.46], P(shallower DD)=100%.
+This is the FIRST strategy with a STATISTICALLY SIGNIFICANT risk-adjusted edge over buy-hold QQQ
+(the original mission). Contrast: the core's Sharpe edge over QQQ was NOT significant (exp09,
+CI spanned zero) — its proven value is only drawdown reduction. The covered call's Sharpe edge
+IS significant. Caveat unchanged: IRA/Roth-only (tax-dominated in taxable, exp15).
+
 ## SETTLED FINAL MAP (account-location decides)
 - TAXABLE (simplest, best after-tax): QQQ buy-hold (max wealth) or the simple trend core
   (half the drawdown). NO options — tax code punishes them.
