@@ -1,5 +1,29 @@
 # FINAL RECOMMENDATION — claude-quant-lab
 
+## ⚠️ AUDIT RESPONSE (2026-07-01) — recommendation REVISED after independent AI audit
+An independent AI audit reviewed this repo and CORRECTLY rejected the 45% same-day taxable
+AI-capex allocation. I concede its findings in full:
+- **45% AI sleeve was too aggressive.** A -50% AI-theme crash ≈ a -22.5% account hit before
+  QQQ correlation. I over-steered toward aggression; that was a mistake.
+- **The AI-capex backtest is not clean enough for large real money:** 2026 current-winners
+  basket (survivorship), ~3-year single regime, high turnover (short-term tax), single-source
+  yfinance. (exp19-21 source is now committed — the audit's reproducibility gap is fixed.)
+- **The defensible core is the boring one**, which is where most of this research pointed anyway.
+
+**REVISED allocation (adopting the audit's view):**
+- **Core (80-90%):** QQQ 12-month momentum -> BIL/T-bills (below), OR plain QQQ/QQQM buy-and-hold
+  if taxable and you can tolerate the drawdowns.
+- **AI-capex sleeve: cap at 10-20%, NOT 45%**, and treat it as a high-risk discretionary tilt,
+  not a proven edge. Auditor's clean 10-yr numbers: QQQ 22.1% CAGR / 1.00 / -35.1%; QQQ 12m-mom->BIL
+  20.9% / 1.04 / -28.6%; 80% core + 20% AI-capex-gate 26.8% / 1.29 / -26.8% (with survivorship + tax caveats).
+- Options / leverage stay OUT of the taxable account (tax-dominated — see below).
+
+The AI-capex thesis is real *as a thesis*; its backtested returns are NOT trustworthy as forward
+estimates. Size it as fun-money, not core. Everything below stands as the underlying research.
+
+---
+
+
 ## ★ THE FINAL STRATEGY (after 15 experiments + studying Codex + Tian Compounding) ★
 The one edge that survives everything = **trend-based drawdown control**. Two clean choices,
 decided by ACCOUNT TYPE (because taxes, not signals, are the real swing factor):
