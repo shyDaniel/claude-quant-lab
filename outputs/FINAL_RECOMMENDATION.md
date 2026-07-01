@@ -21,6 +21,24 @@ AI-capex allocation. I concede its findings in full:
 The AI-capex thesis is real *as a thesis*; its backtested returns are NOT trustworthy as forward
 estimates. Size it as fun-money, not core. Everything below stands as the underlying research.
 
+## 🔥 USER'S CHOSEN RISK LEVEL — AGGRESSIVE (26, high income, long runway, wants return)
+No bonds. House/emergency cash stays OUT of the market. Everything else:
+- **55% QQQ** — aggressive base (already ~100% equity, tech/AI-heavy).
+- **30% AI-capex sleeve** — trend-managed WITH the crash switch (own strongest names above their
+  100-day; go ALL to cash if the sector basket breaks its 100-day). Concentrated bet, but with an exit.
+- **15% sandbox** — moonshots / options / single names / discretion.
+On ~$278k: ~$153k QQQ, ~$83k AI sleeve, ~$42k sandbox.
+
+Honest lines:
+- **30% AI = defensible-aggressive** GIVEN the crash exit. Higher expected return than the auditor's
+  80/20; a -40% year is very possible.
+- **40-45% AI = conviction over evidence** — survivable at your income, but past what a skeptical
+  auditor signs off on. Your call, eyes open (-50% theme crash ≈ -20% account).
+- **NON-NEGOTIABLE at any level:** (1) the crash exit (it's what lets you size big), (2) house/
+  emergency cash out of the market (never a forced sale). These are not conservatism.
+- **Do NOT** treat the AI-capex 100%+ backtest as your forward return — it's survivorship + one
+  bull regime. You're being paid for taking the risk, not for a proven edge.
+
 ---
 
 
