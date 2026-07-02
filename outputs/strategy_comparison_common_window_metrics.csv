@@ -1,0 +1,5 @@
+strategy,cagr,after_liq_cagr,max_drawdown,worst_12m,end_value,after_liq_end_value,rebalances,turnover,daily_vol
+ALT L1>20% strategy,141.3%,,-23.9%,87.3%,$0.93M,,28,8.4x,41.2%
+Buy-hold current target basket,370.4%,266.0%,-35.7%,210.0%,$2.34M,$1.66M,0,0.0x,61.4%
+Equal-weight current target names,415.5%,299.2%,-32.5%,233.8%,$2.65M,$1.86M,0,0.0x,62.3%
+QQQ buy-and-hold,25.3%,17.2%,-22.8%,12.5%,$0.38M,$0.35M,0,0.0x,23.2%

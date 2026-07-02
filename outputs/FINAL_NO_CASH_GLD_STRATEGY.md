@@ -549,6 +549,10 @@ Primary final files:
 - `outputs/alternative_nbis_redirect_order_sheet.csv`
 - `outputs/BAND_REBALANCE_AFTERTAX.md`
 - `outputs/band_rebalance_aftertax_results.csv`
+- `outputs/STRATEGY_COMPARISON_CHARTS.md`
+- `outputs/strategy_comparison_full_window.png`
+- `outputs/strategy_comparison_common_window.png`
+- `outputs/strategy_comparison_drawdowns.png`
 
 Supporting research:
 
@@ -570,3 +574,4 @@ Key scripts:
 - `work/nbis_redirect_sensitivity.py`
 - `work/band_rebalance_aftertax.py`
 - `work/live_band_decision.py`
+- `work/strategy_comparison_charts.py`

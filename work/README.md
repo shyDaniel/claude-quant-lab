@@ -49,6 +49,7 @@ The cache is included for reproducibility. The data is public-market/yfinance-de
 | `nbis_redirect_sensitivity.py` | Tests lower NBIS floor/redirect and monthly cadence alternatives. | `outputs/NBIS_REDIRECT_SENSITIVITY.md` |
 | `band_rebalance_aftertax.py` | Holdings-level after-tax simulator for full, monthly, and L1-band execution rules. | `outputs/BAND_REBALANCE_AFTERTAX.md` |
 | `live_band_decision.py` | Live/current-holdings L1 band checker that prints HOLD/TRADE and order sheet. | terminal output |
+| `strategy_comparison_charts.py` | Compares selected strategy against QQQ and buy-and-hold AI/semis brackets, with charts. | `outputs/STRATEGY_COMPARISON_CHARTS.md` |
 
 ## Final Strategy Files
 
@@ -63,6 +64,10 @@ The final user-selected strategy is documented in:
 - `outputs/alternative_nbis_redirect_order_sheet.csv`
 - `outputs/BAND_REBALANCE_AFTERTAX.md`
 - `outputs/band_rebalance_aftertax_results.csv`
+- `outputs/STRATEGY_COMPARISON_CHARTS.md`
+- `outputs/strategy_comparison_full_window.png`
+- `outputs/strategy_comparison_common_window.png`
+- `outputs/strategy_comparison_drawdowns.png`
 
 ## Important Caveats
 

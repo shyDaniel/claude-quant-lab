@@ -1,0 +1,5 @@
+strategy,cagr,after_liq_cagr,max_drawdown,worst_12m,end_value,after_liq_end_value,rebalances,turnover,daily_vol
+ALT L1>20% pre-tax,60.2%,,-29.6%,-26.7%,$30.57M,,147,8.9x,29.8%
+ALT L1>20% after-tax,38.5%,35.5%,-38.8%,-33.1%,$7.16M,$5.75M,147,8.9x,33.0%
+QQQ buy-and-hold,21.9%,17.8%,-35.1%,-34.8%,$2.00M,$1.43M,0,0.0x,22.4%
+Equal-weight full-history AI/semis,50.8%,45.0%,-54.8%,-47.6%,$16.78M,$11.32M,0,0.0x,39.2%
