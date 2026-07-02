@@ -2,6 +2,14 @@
 
 Date: 2026-07-01
 
+## Supersession Note
+
+This band-rebalanced strategy is no longer the latest taxable-account default. After the buy-and-hold after-tax comparison and catastrophe-gate sweep, the latest taxable return-max spec is:
+
+- `outputs/FINAL_TAXABLE_BUY_HOLD_SPEC_V2.md`
+
+Keep this document as the full record of the ALT weekly L1-band strategy, but use v2 for the current taxable-account recommendation.
+
 ## Decision
 
 The selected execution model is the **no-cash-reserve, weekly-signal, band-rebalanced, GLD-defensive AI/semis strategy**.

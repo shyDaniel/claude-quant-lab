@@ -51,11 +51,13 @@ The cache is included for reproducibility. The data is public-market/yfinance-de
 | `live_band_decision.py` | Live/current-holdings L1 band checker that prints HOLD/TRADE and order sheet. | terminal output |
 | `strategy_comparison_charts.py` | Compares selected strategy against QQQ and buy-and-hold AI/semis brackets, with charts. | `outputs/STRATEGY_COMPARISON_CHARTS.md` |
 | `buy_hold_entry_timing.py` | Tests lump-sum, DCA, pullback, and trend-entry rules for buy-and-hold baskets. | `outputs/BUY_HOLD_ENTRY_TIMING.md` |
+| `catastrophe_gate_buy_hold.py` | Sweeps 10/15/20/25% weekly/monthly catastrophe gates on the buy-and-hold AI/semis basket. | `outputs/CATASTROPHE_GATE_BUY_HOLD.md` |
 
 ## Final Strategy Files
 
 The final user-selected strategy is documented in:
 
+- `outputs/FINAL_TAXABLE_BUY_HOLD_SPEC_V2.md`
 - `outputs/FINAL_NO_CASH_GLD_STRATEGY.md`
 - `outputs/current_1204_exact_order_sheet_GLD_defensive.csv`
 - `outputs/exit_rule_comparison_full_results.csv`
@@ -73,6 +75,9 @@ The final user-selected strategy is documented in:
 - `outputs/buy_hold_entry_timing_3y_bars.png`
 - `outputs/buy_hold_entry_timing_3y_win_rates.png`
 - `outputs/buy_hold_entry_timing_current_basket.png`
+- `outputs/CATASTROPHE_GATE_BUY_HOLD.md`
+- `outputs/catastrophe_gate_curves.png`
+- `outputs/catastrophe_gate_sweep.png`
 
 ## Important Caveats
 
