@@ -12,20 +12,23 @@ The service is account-aware but not a trading bot. It summarizes the documented
 
 ## Current Deployment Status
 
-The repo contains a deployable cloud worker, but this Codex environment does not contain the live secrets or a configured cloud CLI. These were checked and are currently absent:
+The repo contains two deployable cloud paths:
 
-- `OPENAI_API_KEY`
-- `TWILIO_ACCOUNT_SID`
-- `TWILIO_AUTH_TOKEN`
-- `TWILIO_FROM_PHONE` or `TWILIO_MESSAGING_SERVICE_SID`
-- `BRIEF_TO_PHONE`
-- cloud provider token/CLI
+- GitHub Actions scheduled runner, already pushed and dry-run verified.
+- Render Docker background worker blueprint.
 
 Current GitHub repository state:
 
 - `BRIEF_TO_PHONE` secret is set.
 - `HOLDINGS_JSON` secret is set from the July 1-2 v3 account snapshot.
 - `OPENAI_MODEL` variable is set to `gpt-5.4-mini`.
+
+Missing live-SMS secrets:
+
+- `OPENAI_API_KEY`
+- `TWILIO_ACCOUNT_SID`
+- `TWILIO_AUTH_TOKEN`
+- `TWILIO_FROM_PHONE` or `TWILIO_MESSAGING_SERVICE_SID`
 
 So the service is not live-sending yet, but the destination and holdings are already stored securely in GitHub. The remaining activation step is adding the OpenAI/Twilio secrets and letting the scheduled workflow run in live mode.
 
