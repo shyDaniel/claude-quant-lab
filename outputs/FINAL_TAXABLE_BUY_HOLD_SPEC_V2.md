@@ -1,5 +1,8 @@
 # Final Taxable Strategy Spec v2
 
+> Superseded operationally by `outputs/FINAL_TAXABLE_BUY_HOLD_SPEC_V3.md`.
+> Keep this file as the evidence record for the taxable buy-and-hold conclusion.
+
 Date: 2026-07-01
 
 ## Decision

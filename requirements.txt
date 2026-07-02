@@ -1,5 +1,12 @@
+apscheduler>=3.10
+fastapi>=0.115
+feedparser>=6.0.12
 matplotlib>=3.8
 numpy>=2.0
+openai>=2.44.0
 pandas>=2.2
+python-dotenv>=1.0
 tabulate>=0.9
+twilio>=9.10
+uvicorn[standard]>=0.30
 yfinance>=0.2.65

@@ -1,5 +1,8 @@
 # Final No-Cash GLD Strategy
 
+> Superseded for the taxable account by `outputs/FINAL_TAXABLE_BUY_HOLD_SPEC_V3.md`.
+> Keep this file as the record of the earlier band-rebalanced model. The current live-account default is no scheduled sell-to-rebalance, three daylight cash tranches, and the month-end catastrophe gate only.
+
 Date: 2026-07-01
 
 ## Supersession Note

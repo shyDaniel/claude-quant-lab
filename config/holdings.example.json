@@ -1,0 +1,63 @@
+{
+  "account_name": "taxable_robinhood",
+  "cash": 0.0,
+  "holdings": [
+    {
+      "ticker": "QQQ",
+      "shares": 0.0,
+      "target_weight": 0.247,
+      "role": "Core Nasdaq-100 growth exposure"
+    },
+    {
+      "ticker": "MU",
+      "shares": 0.0,
+      "target_weight": 0.221,
+      "role": "Memory/HBM cycle exposure; no additional discretionary chase outside scheduled tranches"
+    },
+    {
+      "ticker": "NBIS",
+      "shares": 0.0,
+      "target_weight": 0.166,
+      "role": "AI infrastructure exposure; hold unless specific kill-news trigger fires"
+    },
+    {
+      "ticker": "GEV",
+      "shares": 0.0,
+      "target_weight": 0.1,
+      "role": "AI power and grid-electrification exposure"
+    },
+    {
+      "ticker": "DRAM",
+      "shares": 0.0,
+      "target_weight": 0.073,
+      "role": "Live memory ETF substitute; use instead of SNDK"
+    },
+    {
+      "ticker": "NVDA",
+      "shares": 0.0,
+      "target_weight": 0.071,
+      "role": "AI accelerator/platform exposure; hold, no new adds in v3"
+    },
+    {
+      "ticker": "VRT",
+      "shares": 0.0,
+      "target_weight": 0.05,
+      "role": "Physical AI data-center infrastructure exposure"
+    },
+    {
+      "ticker": "GLD",
+      "shares": 0.0,
+      "target_weight": 0.072,
+      "role": "Defensive residual sleeve and catastrophe-gate destination"
+    }
+  ],
+  "watchlist": ["VST", "AVGO", "INTC", "BABA", "OKLO", "MRVL", "SMCI"],
+  "strategy_notes": [
+    "Taxable v3 default: buy/hold target basket; no scheduled sell-to-rebalance.",
+    "Deployment: three daylight tranches on 2026-07-06, 2026-07-09, 2026-07-14 unless explicitly overridden.",
+    "Default tranche split when holdings are near the handoff snapshot: GEV 46%, GLD 31%, VRT 23%.",
+    "No night trades. No new NVDA, SNDK, AMD, or SMCI. SMCI wash-sale window remains closed until 2026-08-02.",
+    "Month-end catastrophe gate only: if the ex-GLD equity sleeve closes more than 15% below its trailing 252-trading-day high, move stock basket to GLD.",
+    "NBIS same-day sell exception exists only for prewritten kill-news, not ordinary price weakness."
+  ]
+}

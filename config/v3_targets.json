@@ -1,0 +1,60 @@
+{
+  "name": "taxable_buy_hold_v3_post_claude_handoff",
+  "date": "2026-07-02",
+  "notes": [
+    "No scheduled sell-to-rebalance in taxable.",
+    "Three daylight tranches of about $20k each: 2026-07-06, 2026-07-09, 2026-07-14.",
+    "No new NVDA, SNDK, AMD, or SMCI. SMCI wash-sale window closed until 2026-08-02.",
+    "GLD absorbs target rounding and is the month-end catastrophe-gate destination."
+  ],
+  "targets": [
+    {
+      "ticker": "QQQ",
+      "target_weight": 0.247,
+      "buy_allowed": false,
+      "role": "Core Nasdaq-100 growth exposure"
+    },
+    {
+      "ticker": "MU",
+      "target_weight": 0.221,
+      "buy_allowed": false,
+      "role": "Memory/HBM conviction boost already executed"
+    },
+    {
+      "ticker": "NBIS",
+      "target_weight": 0.166,
+      "buy_allowed": false,
+      "role": "AI infrastructure hold"
+    },
+    {
+      "ticker": "GEV",
+      "target_weight": 0.1,
+      "buy_allowed": true,
+      "role": "Power/grid bottleneck sleeve"
+    },
+    {
+      "ticker": "DRAM",
+      "target_weight": 0.073,
+      "buy_allowed": false,
+      "role": "Memory ETF hold; DRAM replaces SNDK"
+    },
+    {
+      "ticker": "NVDA",
+      "target_weight": 0.071,
+      "buy_allowed": false,
+      "role": "AI accelerator hold, no new adds"
+    },
+    {
+      "ticker": "VRT",
+      "target_weight": 0.05,
+      "buy_allowed": true,
+      "role": "Physical data-center infrastructure sleeve"
+    },
+    {
+      "ticker": "GLD",
+      "target_weight": 0.072,
+      "buy_allowed": true,
+      "role": "Defensive residual sleeve"
+    }
+  ]
+}

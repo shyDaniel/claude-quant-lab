@@ -2,8 +2,15 @@ outputs/*.csv
 outputs/*.html
 data/*.csv
 data/*.parquet
+config/holdings.local.json
+.env
+.env.*
+!.env.example
+!briefing.env.example
+briefing_state.json
 __pycache__/
 .venv/
 *.pyc
 .pytest_cache/
 .ruff_cache/
+.uv-cache/
