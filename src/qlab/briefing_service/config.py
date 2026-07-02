@@ -45,6 +45,7 @@ class Settings:
     openai_api_key: str | None
     openai_model: str
     holdings_path: Path
+    holdings_json: str | None
     briefing_interval_hours: int
     briefing_timezone: str
     dry_run: bool
@@ -64,6 +65,7 @@ class Settings:
             openai_api_key=os.getenv("OPENAI_API_KEY"),
             openai_model=os.getenv("OPENAI_MODEL", "gpt-5.4-mini"),
             holdings_path=Path(os.getenv("HOLDINGS_PATH", "config/holdings.local.json")),
+            holdings_json=os.getenv("HOLDINGS_JSON"),
             briefing_interval_hours=_int_env("BRIEFING_INTERVAL_HOURS", 8),
             briefing_timezone=os.getenv("BRIEFING_TIMEZONE", "America/Los_Angeles"),
             dry_run=_bool_env("BRIEFING_DRY_RUN", True),

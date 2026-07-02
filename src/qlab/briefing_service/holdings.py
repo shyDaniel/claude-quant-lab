@@ -49,6 +49,11 @@ def _holding_from_raw(raw: dict[str, Any]) -> Holding:
     )
 
 
+def load_portfolio_from_text(raw_text: str, source: str) -> PortfolioConfig:
+    raw = json.loads(raw_text)
+    return _portfolio_from_raw(raw, source)
+
+
 def load_portfolio(path: Path) -> PortfolioConfig:
     if not path.exists():
         raise FileNotFoundError(
@@ -56,10 +61,13 @@ def load_portfolio(path: Path) -> PortfolioConfig:
             "config/holdings.local.json and fill in current shares/values."
         )
 
-    raw = json.loads(path.read_text())
+    return load_portfolio_from_text(path.read_text(), str(path))
+
+
+def _portfolio_from_raw(raw: dict[str, Any], source: str) -> PortfolioConfig:
     holdings = [_holding_from_raw(item) for item in raw.get("holdings", [])]
     if not holdings:
-        raise ValueError(f"{path} must contain at least one holding")
+        raise ValueError(f"{source} must contain at least one holding")
 
     target_total = sum(holding.target_weight or 0.0 for holding in holdings)
     if target_total > 1.001:

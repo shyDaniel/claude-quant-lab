@@ -1,13 +1,11 @@
 from __future__ import annotations
 
-from dataclasses import asdict
-
 from apscheduler.schedulers.background import BackgroundScheduler
 from fastapi import FastAPI, Header, HTTPException
 
 from qlab.briefing_service.briefing import build_briefing
 from qlab.briefing_service.config import Settings
-from qlab.briefing_service.sms import send_sms
+from qlab.briefing_service.runner import run_briefing_job
 
 
 def _authorize(settings: Settings, token: str | None) -> None:
@@ -21,12 +19,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     scheduler = BackgroundScheduler(timezone=active_settings.briefing_timezone)
 
     def run_job() -> dict[str, object]:
-        briefing = build_briefing(active_settings)
-        sms_result = send_sms(active_settings, briefing.body)
-        return {
-            "briefing": briefing.body,
-            "sms": asdict(sms_result),
-        }
+        return run_briefing_job(active_settings)
 
     @app.on_event("startup")
     def startup() -> None:

@@ -11,6 +11,8 @@ Latest post-Claude operational spec: [`outputs/FINAL_TAXABLE_BUY_HOLD_SPEC_V3.md
 
 24/7 market briefing service: [`docs/BRIEFING_SERVICE.md`](docs/BRIEFING_SERVICE.md).
 
+Cloud worker blueprint: [`render.yaml`](render.yaml).
+
 Prior band-rebalanced strategy spec: [`outputs/FINAL_NO_CASH_GLD_STRATEGY.md`](outputs/FINAL_NO_CASH_GLD_STRATEGY.md).
 
 This addendum documents the no-cash, weekly-signal, band-rebalanced, GLD-defensive AI/semis strategy with exact weights, current order sheet, buy/sell rules, tested data modes, benchmarks, exit-rule comparisons, cash-reserve comparisons, and after-tax band-rebalance tests.

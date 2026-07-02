@@ -8,7 +8,7 @@ from typing import Any
 from openai import OpenAI
 
 from qlab.briefing_service.config import Settings
-from qlab.briefing_service.holdings import load_portfolio
+from qlab.briefing_service.holdings import load_portfolio, load_portfolio_from_text
 from qlab.briefing_service.market_data import build_market_context
 from qlab.briefing_service.news import news_context
 
@@ -59,7 +59,10 @@ def _call_openai(settings: Settings, context: dict[str, Any]) -> str:
 
 
 def build_briefing(settings: Settings) -> BriefingResult:
-    portfolio = load_portfolio(settings.holdings_path)
+    if settings.holdings_json:
+        portfolio = load_portfolio_from_text(settings.holdings_json, "HOLDINGS_JSON")
+    else:
+        portfolio = load_portfolio(settings.holdings_path)
     context = {
         "market": build_market_context(portfolio),
         "news": news_context(settings.news_feeds),

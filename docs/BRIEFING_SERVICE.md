@@ -10,6 +10,19 @@ This service sends a calm account/market briefing every 8 hours. It uses:
 
 The service is account-aware but not a trading bot. It summarizes the documented rules and current holdings; it does not invent live orders.
 
+## Current Deployment Status
+
+The repo contains a deployable cloud worker, but this Codex environment does not contain the live secrets or a configured cloud CLI. These were checked and are currently absent:
+
+- `OPENAI_API_KEY`
+- `TWILIO_ACCOUNT_SID`
+- `TWILIO_AUTH_TOKEN`
+- `TWILIO_FROM_PHONE` or `TWILIO_MESSAGING_SERVICE_SID`
+- `BRIEF_TO_PHONE`
+- cloud provider token/CLI
+
+So the service is not live-sending from this machine yet. The remaining activation step is adding those secrets to the cloud host and flipping `BRIEFING_DRY_RUN=false`.
+
 ## Local Setup
 
 ```bash
@@ -31,6 +44,24 @@ BRIEFING_DRY_RUN="true"
 Important: ChatGPT Pro and OpenAI API usage are separate products. The service needs an API key from the OpenAI platform account and billable API access.
 
 Then fill in `config/holdings.local.json` with actual shares/current values. This file is ignored by Git.
+
+For cloud deployment, put the full contents of `config/holdings.local.json` into the secret env var `HOLDINGS_JSON`. That avoids committing or baking private holdings into the Docker image.
+
+## Config Doctor
+
+Local dry-run config check:
+
+```bash
+HOLDINGS_PATH=config/holdings.example.json PYTHONPATH=src python -m qlab.briefing_service.main doctor --briefing
+```
+
+Live-SMS readiness check:
+
+```bash
+BRIEFING_DRY_RUN=false PYTHONPATH=src python -m qlab.briefing_service.main doctor --live
+```
+
+`doctor --live` exits non-zero until OpenAI, Twilio, destination phone, sender, and holdings config are all present.
 
 ## Run Once
 
@@ -58,9 +89,25 @@ Endpoints:
 
 Use one process/one worker. Multiple workers would start multiple schedulers and duplicate texts.
 
+For background-worker hosts, prefer:
+
+```bash
+PYTHONPATH=src python -m qlab.briefing_service.main scheduler
+```
+
 ## Cloud Deploy
 
-Any long-running container host works: Fly.io, Render, Railway, ECS, GCP Cloud Run with min instances, or a small VM.
+Any long-running container host works: Render Worker, Fly.io Machine, Railway service, ECS service, GCP Cloud Run with min instances, or a small VM.
+
+This repo includes `render.yaml` for a Render Docker background worker:
+
+1. Create a new Render Blueprint from this GitHub repo.
+2. Use the `quant-market-briefing` worker.
+3. Fill every `sync: false` secret.
+4. Put private holdings JSON in `HOLDINGS_JSON`.
+5. Let the first deploy run with `BRIEFING_DRY_RUN=true`.
+6. Inspect logs for `doctor`/dry-run behavior if needed.
+7. Set `BRIEFING_DRY_RUN=false` only when the preview is correct.
 
 Required deployment settings:
 
@@ -75,6 +122,12 @@ Docker command:
 ```bash
 docker build -t quant-briefing .
 docker run --env-file .env -p 8080:8080 quant-briefing
+```
+
+Worker command:
+
+```bash
+docker run --env-file .env quant-briefing python -m qlab.briefing_service.main scheduler
 ```
 
 ## Message Contract
