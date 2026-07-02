@@ -11,6 +11,8 @@ Latest post-Claude operational spec: [`outputs/FINAL_TAXABLE_BUY_HOLD_SPEC_V3.md
 
 24/7 market briefing service: [`docs/BRIEFING_SERVICE.md`](docs/BRIEFING_SERVICE.md).
 
+GitHub Actions 8-hour SMS runner: [`.github/workflows/market-briefing.yml`](.github/workflows/market-briefing.yml).
+
 Cloud worker blueprint: [`render.yaml`](render.yaml).
 
 Prior band-rebalanced strategy spec: [`outputs/FINAL_NO_CASH_GLD_STRATEGY.md`](outputs/FINAL_NO_CASH_GLD_STRATEGY.md).

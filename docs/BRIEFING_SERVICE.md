@@ -21,7 +21,13 @@ The repo contains a deployable cloud worker, but this Codex environment does not
 - `BRIEF_TO_PHONE`
 - cloud provider token/CLI
 
-So the service is not live-sending from this machine yet. The remaining activation step is adding those secrets to the cloud host and flipping `BRIEFING_DRY_RUN=false`.
+Current GitHub repository state:
+
+- `BRIEF_TO_PHONE` secret is set.
+- `HOLDINGS_JSON` secret is set from the July 1-2 v3 account snapshot.
+- `OPENAI_MODEL` variable is set to `gpt-5.4-mini`.
+
+So the service is not live-sending yet, but the destination and holdings are already stored securely in GitHub. The remaining activation step is adding the OpenAI/Twilio secrets and letting the scheduled workflow run in live mode.
 
 ## Local Setup
 
@@ -97,7 +103,53 @@ PYTHONPATH=src python -m qlab.briefing_service.main scheduler
 
 ## Cloud Deploy
 
-Any long-running container host works: Render Worker, Fly.io Machine, Railway service, ECS service, GCP Cloud Run with min instances, or a small VM.
+There are two supported cloud paths:
+
+1. GitHub Actions scheduled runner: easiest activation, no always-on server bill.
+2. Always-on worker/container: Render Worker, Fly.io Machine, Railway service, ECS service, GCP Cloud Run with min instances, or a small VM.
+
+### GitHub Actions Scheduled Runner
+
+This repo includes `.github/workflows/market-briefing.yml`.
+
+It runs at minute 7 every 8 UTC hours and can also be triggered manually from GitHub Actions. Scheduled runs use live mode (`BRIEFING_DRY_RUN=false`) and intentionally fail until all secrets are configured.
+
+Required repository secrets:
+
+```bash
+gh secret set OPENAI_API_KEY --repo shyDaniel/claude-quant-lab
+gh secret set TWILIO_ACCOUNT_SID --repo shyDaniel/claude-quant-lab
+gh secret set TWILIO_AUTH_TOKEN --repo shyDaniel/claude-quant-lab
+gh secret set TWILIO_FROM_PHONE --repo shyDaniel/claude-quant-lab
+```
+
+Already set by Codex:
+
+```bash
+gh secret set BRIEF_TO_PHONE --repo shyDaniel/claude-quant-lab
+gh secret set HOLDINGS_JSON --repo shyDaniel/claude-quant-lab < config/holdings.local.json
+gh variable set OPENAI_MODEL --body gpt-5.4-mini --repo shyDaniel/claude-quant-lab
+```
+
+If using a Twilio Messaging Service instead of a sender phone:
+
+```bash
+gh secret set TWILIO_MESSAGING_SERVICE_SID --repo shyDaniel/claude-quant-lab
+```
+
+Manual dry-run:
+
+```bash
+gh workflow run market-briefing.yml --repo shyDaniel/claude-quant-lab -f dry_run=true
+```
+
+Manual live send after secrets are configured:
+
+```bash
+gh workflow run market-briefing.yml --repo shyDaniel/claude-quant-lab -f dry_run=false
+```
+
+### Always-On Worker
 
 This repo includes `render.yaml` for a Render Docker background worker:
 
