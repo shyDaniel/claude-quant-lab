@@ -50,6 +50,7 @@ The cache is included for reproducibility. The data is public-market/yfinance-de
 | `band_rebalance_aftertax.py` | Holdings-level after-tax simulator for full, monthly, and L1-band execution rules. | `outputs/BAND_REBALANCE_AFTERTAX.md` |
 | `live_band_decision.py` | Live/current-holdings L1 band checker that prints HOLD/TRADE and order sheet. | terminal output |
 | `strategy_comparison_charts.py` | Compares selected strategy against QQQ and buy-and-hold AI/semis brackets, with charts. | `outputs/STRATEGY_COMPARISON_CHARTS.md` |
+| `buy_hold_entry_timing.py` | Tests lump-sum, DCA, pullback, and trend-entry rules for buy-and-hold baskets. | `outputs/BUY_HOLD_ENTRY_TIMING.md` |
 
 ## Final Strategy Files
 
@@ -68,6 +69,10 @@ The final user-selected strategy is documented in:
 - `outputs/strategy_comparison_full_window.png`
 - `outputs/strategy_comparison_common_window.png`
 - `outputs/strategy_comparison_drawdowns.png`
+- `outputs/BUY_HOLD_ENTRY_TIMING.md`
+- `outputs/buy_hold_entry_timing_3y_bars.png`
+- `outputs/buy_hold_entry_timing_3y_win_rates.png`
+- `outputs/buy_hold_entry_timing_current_basket.png`
 
 ## Important Caveats
 

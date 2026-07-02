@@ -553,6 +553,10 @@ Primary final files:
 - `outputs/strategy_comparison_full_window.png`
 - `outputs/strategy_comparison_common_window.png`
 - `outputs/strategy_comparison_drawdowns.png`
+- `outputs/BUY_HOLD_ENTRY_TIMING.md`
+- `outputs/buy_hold_entry_timing_3y_bars.png`
+- `outputs/buy_hold_entry_timing_3y_win_rates.png`
+- `outputs/buy_hold_entry_timing_current_basket.png`
 
 Supporting research:
 
@@ -575,3 +579,4 @@ Key scripts:
 - `work/band_rebalance_aftertax.py`
 - `work/live_band_decision.py`
 - `work/strategy_comparison_charts.py`
+- `work/buy_hold_entry_timing.py`

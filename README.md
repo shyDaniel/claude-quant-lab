@@ -11,6 +11,8 @@ This addendum documents the no-cash, weekly-signal, band-rebalanced, GLD-defensi
 
 Comparison charts: [`outputs/STRATEGY_COMPARISON_CHARTS.md`](outputs/STRATEGY_COMPARISON_CHARTS.md).
 
+Buy-and-hold entry timing tests: [`outputs/BUY_HOLD_ENTRY_TIMING.md`](outputs/BUY_HOLD_ENTRY_TIMING.md).
+
 Backtest code and cached inputs used by the Codex audit are in [`work/`](work/).
 
 Status: bootstrapping — research first, then a lean vectorized backtester.
